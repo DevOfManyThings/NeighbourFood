@@ -5,7 +5,7 @@
  */
 /*jslint node: true, browser: true */
 "use strict";
-function openRegister() {
-   window.location = "https://devweb2014.cis.strath.ac.uk/~yfb13226/CS317/AppCity/register.html";
+function navTo(link) {
+   window.location = encodeURIComponent(link);
 }
 
