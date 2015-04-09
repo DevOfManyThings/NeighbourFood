@@ -14,7 +14,7 @@ include ("connection.php");
     <div class="navigation">
     <ul class = "Links">
 
-        <li class = "default"><a href = "index.php" class="nav">Home</a></li>
+        <li class = "default"><a href = "login.php" class="nav">Home</a></li>
 
     </ul>
 
@@ -153,7 +153,6 @@ if (isset($_POST['orgSelection'])) {
 //   - Charity
 
 if ($continue == true) {
-        $emailUsed = false;
         // If already logged in with an account dont let the user register.
         if ($_SESSION['login'] == "1")
         {
@@ -171,7 +170,8 @@ if ($continue == true) {
         }
         if($numRows > 0)
         {
-            $emailUsed = true;
+            // Email already in use - take them back to the login page.         
+            header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/login.php'); 
         }
         else
         {
@@ -192,7 +192,7 @@ if ($continue == true) {
         // they can login using the account they just created.
         $_SESSION['login'] = "";
 
-        header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/index.php');  
+        header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/login.php');  
         }
 }
 ?>
