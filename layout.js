@@ -21,21 +21,26 @@ function resize() {
                 element.tagName !== "BODY") {
             
             if (element.id === "icon") {
+                //20
                 element.style.height = String(15 * L) + "px";
                 element.style.marginTop = String(3 * L) + "px";
                 element.style.marginBottom = String(2 * L) + "px";
             }
-            if (element.tagName === "H1") {
+            if (element.id === "heading") {
+                //15
                 element.style.height = String(10 * L) + "px";
+                element.style.marginTop = String(L) + "px";
                 element.style.marginBottom = String(2 * L) + "px";
+                element.style.paddingTop = String(2 * L) + "px";
             }
             if (element.tagName === "HR") {
            
-                element.style.marginTop = String(20 * L) + "px";
+                element.style.marginTop = String(15 * L) + "px";
                 element.style.marginBottom = String(5 * L) + "px";
 
             }
             if (element.tagName === "INPUT" || element.tagName === "BUTTON"){
+                //10
                 element.style.height = String(7 * L) + "px";
                 element.style.marginTop = String(2 * L) + "px";
                 element.style.marginBottom = String(1 * L) + "px";
