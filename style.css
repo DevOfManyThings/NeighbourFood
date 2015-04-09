@@ -21,7 +21,19 @@ html, body{
     font-size: larger;
     font-family: Arial, Helvetica, sans-serif;
 }
+hr{
+    width:80%;
+    margin-left:10%;
+    color:grey;
+    
+}
+h1{
+    color:white;
+    background-color:seagreen;
+}
+p{
+    color:midnightblue;
+}
 button, input{
-    width: 40%;
-    text-overflow:ellipsis-word;
+    width: 60%;
 }
