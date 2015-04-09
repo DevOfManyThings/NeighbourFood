@@ -7,7 +7,7 @@ function resize() {
      */
     var i = null,
         element = null,
-        screenHeight = window.innerHeight,
+        screenHeight = window.outerHeight,
         L = (screenHeight / 100);
     alert("height :  " + screenHeight);
 
