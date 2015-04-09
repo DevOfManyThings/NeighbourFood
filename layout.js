@@ -30,5 +30,5 @@ function resize() {
 }
 resize();
 window.addEventListener("resize", resize);
-setTimeout(50,resize);
+setTimeout(100,resize);
 
