@@ -1,6 +1,6 @@
 /*jslint node: true, browser: true */
 "use strict";
-/* Function to deal with height inaccuracy in css, and resize as needed. */
+/* Function to deal with height/ vertical spacing issues in css, and resize as needed to fit each screen. */
 function resize() {
     /* Resize element height to fit screen
      *  L = unit for one percent of screen height
@@ -9,6 +9,7 @@ function resize() {
         element = null,
         screenHeight = window.innerHeight,
         L = (screenHeight / 100);
+
     for (i = 0; i < document.getElementsByTagName("*").length; i += 1) {
         element = document.getElementsByTagName("*")[i];
         if (element.tagName !== "HTML" &&
@@ -19,17 +20,15 @@ function resize() {
                 element.tagName !== "SCRIPT" &&
                 element.tagName !== "BODY") {
             console.log("Tag Name :  " + element.tagName);
-            if (element.tagName === "BUTTON"){
-                element.style.height = String(5 * L) + "px"; 
-            }
-            if (element.tagName === "INPUT"){
-                element.style.height = String(5 * L) + "px";
-                element.style.marginTop = String(5 * L) + "px"; 
+            
+            if (element.tagName === "INPUT" || element.tagName === "BUTTON"){
+                element.style.height = String(7.5 * L) + "px";
+                element.style.marginTop = String(7.5 * L) + "px"; 
             }
         }
     }
 }
 resize();
 window.addEventListener("resize", resize);
-
+setTimeout(50,resize);
 
