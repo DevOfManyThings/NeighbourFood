@@ -35,7 +35,7 @@ function resize() {
             }
             if (element.tagName === "HR") {
            
-                element.style.marginTop = String(15 * L) + "px";
+                element.style.marginTop = String(10 * L) + "px";
                 element.style.marginBottom = String(5 * L) + "px";
 
             }
