@@ -9,7 +9,6 @@ function resize() {
         element = null,
         screenHeight = window.outerHeight,
         L = (screenHeight / 100);
-    alert("height :  " + screenHeight);
 
     for (i = 0; i < document.getElementsByTagName("*").length; i += 1) {
         element = document.getElementsByTagName("*")[i];
@@ -21,11 +20,20 @@ function resize() {
                 element.tagName !== "SCRIPT" &&
                 element.tagName !== "BODY") {
             
-            
-            if (element.tagName === "INPUT" || element.tagName === "BUTTON"){
-                element.style.height = String(7.5 * L) + "px";
-                element.style.marginTop = String(7.5 * L) + "px"; 
+            if (element.id === "icon") {
+                element.style.height = String(12 * L) + "px";
+                element.style.marginTop = String(3 * L) + "px";
             }
+            if (element.tagName === "H1") {
+                element.style.height = String(10 * L) + "px";
+                element.style.marginTop = String(5 * L) + "px";
+            }
+            if (element.tagName === "INPUT" || element.tagName === "BUTTON"){
+                element.style.height = String(7 * L) + "px";
+                element.style.marginTop = String(2 * L) + "px";
+                element.style.marginBottom = String(1 * L) + "px";
+            }
+            
         }
     }
 }
