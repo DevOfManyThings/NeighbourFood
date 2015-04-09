@@ -9,6 +9,7 @@ function resize() {
         element = null,
         screenHeight = window.innerHeight,
         L = (screenHeight / 100);
+    alert("height :  " + screenHeight);
 
     for (i = 0; i < document.getElementsByTagName("*").length; i += 1) {
         element = document.getElementsByTagName("*")[i];
@@ -19,7 +20,7 @@ function resize() {
                 element.tagName !== "LINK" &&
                 element.tagName !== "SCRIPT" &&
                 element.tagName !== "BODY") {
-            console.log("Tag Name :  " + element.tagName);
+            
             
             if (element.tagName === "INPUT" || element.tagName === "BUTTON"){
                 element.style.height = String(7.5 * L) + "px";
