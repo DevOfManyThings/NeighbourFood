@@ -9,19 +9,12 @@ include ("connection.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="style.css"/>
 </head>
 
-<div class="navigation">
-    <ul class = "Links">
-
-        <li class = "default"><a href = "login.php" class="nav">Home</a></li>
-
-    </ul>
-
-    <div id = "content" class = "c">
-        <div class="registration">
-            <form method="POST" action = "register.php">
-                <input type="text" name="orgName" placeholder="Business/Charity Name">
+<body>
+    <form method="POST" action = "register.php">
+        <input type="text" name="orgName" placeholder="Business/Charity Name">
                 <br>
                 <br>
                 <input type="number" min="1" name="number" placeholder="Number">
@@ -50,8 +43,9 @@ include ("connection.php");
                 <br>
                 <input type="submit" value="Register">
             </form>
-        </div>
-    </div>
+            <script src="layout.js"></script>
+</body>
+</html>
 
 <?php
 $continue = false;
