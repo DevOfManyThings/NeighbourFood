@@ -15,18 +15,8 @@ include ("checkBusinessLogin.php")
     <script src="navigate.js"></script>
 </head>
 
-
-
-<div class="navigation">
-    <ul class = "Links">
-
-        <li class = "default"><a href = "login.php" class="nav">Home</a></li>
-
-    </ul>
-
     <body>
-        <p>Logout</p>
-        <form action="logout.php">
+        <form method="POST" action="logout.php">
             <input type="submit" value="Logout">
         </form>
     </body>
@@ -35,7 +25,7 @@ include ("checkBusinessLogin.php")
 
     <body>
         <!-- Navigate to donate page for business -->
-        <button onclick="navTo('donate.html')"> Donate Food </button>
+        <button onclick="navTo('donate.php')"> Donate Food </button>
 
         <!-- Table displaying the business' current donations & their status -->
         <table>
@@ -80,6 +70,6 @@ include ("checkBusinessLogin.php")
 
             </tbody>
         </table>
-
+        <script src="layout.js"></script>
     </body>
 </html>
