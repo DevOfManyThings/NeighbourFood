@@ -42,7 +42,7 @@ if ($password == $pass)
             $_SESSION['login'] = "business";
             header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/business.php');                           
         }
-        if($type == "Charity")
+        else if($type == "Charity")
         {
             session_start();
             $_SESSION['login'] = "charity";
@@ -57,13 +57,12 @@ if ($password == $pass)
             header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/login.php'); 
             
         }
-}
-// If nothing is entered into the login or password textbox.
-else
+else // If nothing is entered into the login or password textbox.
 {
     session_start();
     $_SESSION['login'] = "";
     header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/login.php'); 
 }
-			
+
+}			
 ?>
