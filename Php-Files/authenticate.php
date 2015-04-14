@@ -32,10 +32,12 @@ if ($password == $pass) {
 
     if ($type == "Business") {
         session_start();
+        $_SESSION['email'] = $email;
         $_SESSION['login'] = "business";
         header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/business.php');
     } else if ($type == "Charity") {
         session_start();
+        $_SESSION['email'] = $email;
         $_SESSION['login'] = "charity";
         header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/charity.php');
     }
