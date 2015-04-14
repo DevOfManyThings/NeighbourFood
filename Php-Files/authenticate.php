@@ -47,15 +47,23 @@ if ($password == $pass)
             session_start();
             $_SESSION['login'] = "charity";
             header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/charity.php');              
-        } 
-        else if ($numRows < 1)
+        }
+        // If the user tries to login with account credentials that aren't recognised
+        // the $_SESSION variable isn't set and they are taken back to the Login page.
+        else if (numrows < 1)
         {
-            // If the user tries to login with account credentials that aren't recognised
-            // the $_SESSION variable isn't set and they are taken back to the Login page.
             session_start();
             $_SESSION['login'] = "";
             header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/login.php'); 
+            
         }
+}
+// If nothing is entered into the login or password textbox.
+else
+{
+    session_start();
+    $_SESSION['login'] = "";
+    header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/login.php'); 
 }
 			
 ?>
