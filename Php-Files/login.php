@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ?>
 
 
@@ -12,7 +14,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
 </head>
 
-<body>
+<?php if (empty($_SESSION['login'])) { ?>
     <form method="POST" action="authenticate.php">
         <input type="text" name="loginEmail" placeholder="Email" onfocus="this.placeholder = ''">
         <br>
@@ -26,4 +28,10 @@
     <form action="register.php">
         <input type="submit" value="Register">
     </form>
-</body>
+<?php } ?>
+
+<?php if (!empty($_SESSION['login'])) { ?>
+    <form method="POST" action="logout.php">
+        <input type = "submit" value = "Logout">
+    </form>
+<?php } ?>
