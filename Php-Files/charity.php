@@ -1,6 +1,8 @@
 <?php
+
 include ("connection.php");
 include ("checkCharityLogin.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -22,61 +24,33 @@ include ("checkCharityLogin.php");
     </body>
 
     <body>
-        <!-- Navigate to donate page for business -->
-        <button onclick="navTo('donate.php')"> Donate Food </button>
-
-        <!-- Table displaying the current donations available to claim & their status -->
-        <table>
-            <thead>
-                <tr>
-                    <th>
-                        Donator Name   
-                    </th>
-                    <th>
-                        Item Name   
-                    </th>
-                    <th>
-                        Item Quantity  
-                    </th>
-                    <th>
-                        Start Time     
-                    </th>
-                    <th>
-                        End Time     
-                    </th>
-                    <th>
-                        <!-- Blank for claim buttons -->     
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- TODO Php: Make new <tr> for each item donated -->
-                <tr>
-                    <td>
-                        Donated Item i: Attribute "Business id"  
-                    </td>
-                    <td>
-                        Donated Item i: Attribute "Name"  
-                    </td>
-                    <td>
-                        Donated Item i: Attribute "Quantity"
-                    </td>
-                    <td>
-                        Donated Item i: Attribute "Start Time" 
-                    </td>
-                    <td>
-                        Donated Item i: Attribute "End Time"
-                    </td>
-                    <td>
-                        <!--  this button's claim() Javascript should:
-                        Check if has been claimed, if so alert with apology/
-                        if not, set as claimed and navigate to claim page -->
-                        <button onclick = "claim()"></button>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
         <script src="layout.js"></script>
     </body>
 </html>
+
+
+<?php      
+    $sql = "SELECT a.Item, a.Quantity, b.OrgName, a.Business_Email, a.Time_Start, a.Time_End
+            FROM Food_Details a
+            INNER JOIN Client_Details b ON a.Business_Email = b.Email";
+
+    $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
+
+    $numRows = mysqli_num_rows($result);
+
+    if ($numRows > 0) 
+    {
+        echo "Available for Claim<table><tr><th>Item Description</th></tr><tr><th>Quantity</th><th><tr><th>Business Name</th><th><tr><th>Business Email</th><th><tr><th>Donation Date</th><th><tr><th>Donation Available Until</th><th>";
+    
+    // Output data of each row.
+    while ($row = $result->fetch_assoc()) 
+    {
+        echo "<tr><td>" . $row["Item"] . " " . $row["Quantity"] . " " . $row["OrgName"] . " " . $row["Business_Email"] . " " . $row["Time_Start"] . " " . $row["Time_End"] . "</td></tr>";
+    }
+    echo "</table>";
+    } 
+    else 
+    {
+        echo "No Donations have been listed.";
+    }
+?>
