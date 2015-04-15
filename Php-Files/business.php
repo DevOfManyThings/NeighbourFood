@@ -17,22 +17,17 @@ include ("checkBusinessLogin.php");
     <script src="navigate.js"></script>
 </head>
 
-    <body>
-        <form method="POST" action="logout.php">
-            <input type="submit" value="Logout">
-        </form>
-    </body>
-
-
-
-    <body>
-        <!-- Navigate to donate page for business -->
-        <button onclick="navTo('donate.php')">Donate</button>
-        <script src="layout.js"></script>
-    </body>
-</html>
-
-<?php     
+    <body>   
+        <?php     
+        
+        echo "<header>"
+        . "<h2><!-- We could put currently logged on business name here --> </h2>"
+        . "</header>"
+        ."<!-- Navigate to donate page for business -->"
+        . "<button class=\"button\" onclick=\"navTo('donate.php')\">Donate</button>"
+        . "<form method=\"POST\" action=\"logout.php\">"
+        . "<input class=\"button\" type=\"submit\" value=\"Logout\">"
+        . "</form>";
 
     // PHP to show the donations.
     $sql = "SELECT a.Item, a.Quantity, b.OrgName, a.Business_Email, a.Time_Start, a.Time_End, a.Claimed_By
@@ -46,22 +41,34 @@ include ("checkBusinessLogin.php");
     if ($numRows > 0) 
     {
         echo "<p>Donations</p>"
-        . "<table>"
+        . "<table id=\"donations\">"
+                . "<thead>"
                 . "<tr>"
                 . "<th>Item Description</th>"
                 . "<th>Quantity</th>"
                 . "<th>Business Name</th>"
                 . "<th>Business Email</th>"
-                . "<th>Donation Date</th>"
-                . "<th>Donation Available Until</th>"
-                . "<th><tr><th>Claimed By</th><th>";
+                . "<th>Donated At</th>"
+                . "<th>Available Until</th>"
+                . "<th>Claimed By</th>"
+                . "</tr>"
+                . "</thead><tbody>";
     
     // Output data of each row.
     while ($row = $result->fetch_assoc()) 
     {
-        echo "<tr><td>" . $row["Item"] . " " . $row["Quantity"] . " " . $row["OrgName"] . " " . $row["Business_Email"] . " " . $row["Time_Start"] . " " . $row["Time_End"] . " " . $row["Claimed_By"] .  "</td></tr>";
+        echo "<tr>"
+        . "<td>" . $row["Item"] . "</td>" 
+                . "<td>" . $row["Item"] . "</td> " 
+                . "<td>" . $row["Quantity"] . "</td> " 
+                . "<td>" . $row["OrgName"] . "</td> " 
+                . "<td>" . $row["Business_Email"] . "</td> " 
+                . "<td>" . $row["Time_Start"] . "</td> "
+                . "<td>" . $row["Time_End"] . "</td> " 
+                . "<td>" . $row["Claimed_By"] . "</td> " 
+                . "</tr>";
     }
-    echo "</table>";
+    echo "</tbody></table>";
     } 
     else 
     {
@@ -85,17 +92,37 @@ include ("checkBusinessLogin.php");
 
     if ($numRows > 0) 
     {
-        echo "<br><br>Donations Made By You.</br></br><table><tr><th>Item Description</th></tr><tr><th>Quantity</th><th><tr><th>Business Name</th><th><tr><th>Business Email</th><th><tr><th>Donation Date</th><th><tr><th>Donation Available Until</th><th>";
+        echo "<section>"
+        . "Donations Made By You."
+                . "<table id=\"business\">"
+                . "<thead>"
+                . "<tr>"
+                . "<th>Item Description</th>"
+                . "<th>Quantity</th>"
+                . "<th>Donated At</th>"
+                . "<th>Available Until</th>"
+                . "</tr>"
+                . "</thead><tbody>";
+        
     
     // Output data of each row.
     while ($row = $result->fetch_assoc()) 
     {
-        echo "<tr><td>" . $row["Item"] . " " . $row["Quantity"] . " " . $row["OrgName"] . " " . $row["Business_Email"] . " " . $row["Time_Start"] . " " . $row["Time_End"] . "</td></tr>";
+        echo "<tr>"
+        . "<td>" . $row["Item"] . "</td>"
+                . "<td>" . $row["Quantity"] . "</td>"
+                . "<td>" . $row["Time_Start"] . "</td>"
+                . "<td>" . $row["Time_End"] . "</td>"
+                . "</tr>";
     }
-    echo "</table>";
+    echo "</tbody></table>";
     } 
     else 
     {
         echo "You Have Made No Donations.";
     }
 ?>
+        <script src="../layout.js"></script>
+    </body>
+</html>
+
