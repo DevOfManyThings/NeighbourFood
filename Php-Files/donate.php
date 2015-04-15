@@ -84,14 +84,15 @@ if ($continue == true)
         $email = $_SESSION['email'];
     }   
     
-    $sql = "INSERT INTO Food_Details ( Item,  Quantity,  Time_Start,  Claimed,  Business_Email, Time_End, ItemID)"
-                        .  "VALUES   (  ?,        ?,         ?,          0,           ?,           ?,      NULL )";
+    $sql = "INSERT INTO Food_Details ( Item,  Quantity,  Time_Start,  Claimed_By,  Business_Email, Time_End, ItemID)"
+                        .  "VALUES   (  ?,        ?,         ?,           ?,              ?,          ?,      NULL )";
     
     $stmt = mysqli_stmt_init($connection);
+    $claimedBy= "Unclaimed";
 
     if (mysqli_stmt_prepare($stmt, $sql))
     {
-        mysqli_stmt_bind_param($stmt, 'sssss', $itemDescription, $quantity, $start, $email, $end);
+        mysqli_stmt_bind_param($stmt, 'ssssss', $itemDescription, $quantity, $start, $claimedBy, $email, $end);
         mysqli_stmt_execute($stmt);
     }  
     header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/donate.php');
