@@ -24,12 +24,7 @@ include ("checkCharityLogin.php");
     </body>
 
     <body>
-        <script src="layout.js"></script>
-    </body>
-</html>
-
-
-<?php      
+        <?php      
     $sql = "SELECT a.Item, a.Quantity, b.OrgName, a.Business_Email, a.Time_Start, a.Time_End, a.Claimed_By
             FROM Food_Details a
             INNER JOIN Client_Details b ON a.Business_Email = b.Email";
@@ -40,17 +35,43 @@ include ("checkCharityLogin.php");
 
     if ($numRows > 0) 
     {
-        echo "Donations<table><tr><th>Item Description</th></tr><tr><th>Quantity</th><th><tr><th>Business Name</th><th><tr><th>Business Email</th><th><tr><th>Donation Date</th><th><tr><th>Donation Available Until</th><th><tr><th>Claimed By</th><th>";
+        echo "Donations"
+        . "<table>"
+                . "<thead>"
+                . "<tr>"
+                . "<th>Item Description</th>"
+                . "<th>Quantity</th>"
+                . "<th>Business Name</th>"
+                . "<th>Business Email</th>"
+                . "<th>Donation Date</th>"
+                . "<th>Donation Available Until</th>"
+                . "<th>Claimed By</th>"
+                . "</tr>"
+                . "</thead><tbody>";
+        
     
     // Output data of each row.
     while ($row = $result->fetch_assoc()) 
     {
-        echo "<tr><td>" . $row["Item"] . " " . $row["Quantity"] . " " . $row["OrgName"] . " " . $row["Business_Email"] . " " . $row["Time_Start"] . " " . $row["Time_End"] . " " . $row["Claimed_By"] . "</td></tr>";
+        echo "<tr>"
+        . "<td>" . $row["Item"] . "</td>"
+        . "<td>" . $row["Quantity"] . "</td>"
+        . "<td>" . $row["OrgName"] . "</td>"
+        . "<td>" . $row["Business_Email"] . "</td>" 
+        . "<td>" . $row["Time_Start"] . "</td>"
+        . "<td>" . $row["Time_End"] . "</td>" 
+        . "<td>" . $row["Claimed_By"] . "</td>"
+                . "</tr>";
     }
-    echo "</table>";
+    echo "</tbody></table>";
     } 
     else 
     {
         echo "No Donations have been listed.";
     }
 ?>
+        <script src="layout.js"></script>
+    </body>
+</html>
+
+
