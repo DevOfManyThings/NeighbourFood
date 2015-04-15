@@ -36,15 +36,15 @@ include ("checkCharityLogin.php");
     if ($numRows > 0) 
     {
         echo "Donations"
-        . "<table>"
+        . "<table id=\"donations\">"
                 . "<thead>"
                 . "<tr>"
                 . "<th>Item Description</th>"
                 . "<th>Quantity</th>"
                 . "<th>Business Name</th>"
                 . "<th>Business Email</th>"
-                . "<th>Donation Date</th>"
-                . "<th>Donation Available Until</th>"
+                . "<th>Donated At</th>"
+                . "<th>Available Until</th>"
                 . "<th>Claimed By</th>"
                 . "</tr>"
                 . "</thead><tbody>";
