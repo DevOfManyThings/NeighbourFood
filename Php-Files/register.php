@@ -11,41 +11,37 @@ include ("connection.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="../style.css"/>
 </head>
 
 <body>
     <form method="POST" action="register.php">
         <input type="text" name="orgName" placeholder="Business/Charity Name">
-                <br>
-                <br>
+                <br />
                 <input type="number" min="1" name="number" placeholder="Number">
-                <br>
+                <br />
                 <input type="text" name="street" placeholder="Street">
-                <br>
+                <br />
                 <input type="text" name="postCode" placeholder="Post Code">
-                <br>
-                <br>
+                <br />
                 <input type="text" name="regEmail" placeholder="Email"> 
-                <br>
-                <br>
+                <br />
                 <input type="text" name="regPass" placeholder="Password">
-                <br>
-                <br>
+                <br />
                 <input type="text" name="re-enterPass" placeholder="Re-Enter Password">
-                <br>
-                <br>
+                <br />
+                <div id="radioMenu">
                 Business
                 <input type="radio" name="orgSelection" value="Business">
-                <br>
-                <br>
+                </div>
+                <div id="radioMenu">
                 Charity
                 <input type="radio" name="orgSelection" value="Charity">
-                <br>
-                <br>
-                <input type="submit" value="Register">
+                </div>
+                <br />
+                <input class="button" type="submit" value="Register">
             </form>
-            <script src="layout.js"></script>
+            <script src="../layout.js"></script>
 </body>
 </html>
 
@@ -139,7 +135,7 @@ if ($continue == true) {
 
     if ($numRows > 0) {
         // Email already in use - take them back to the login page.         
-        header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/login.php');
+        header('Location: login.php');
     } else {
         $sql = "INSERT INTO Client_Details (OrgName, Number, Street, Postcode, Email, Password, Type )"
                                  . "VALUES (   ?,      ?,      ?,       ?,       ?,       ?,      ?  )";
@@ -156,7 +152,7 @@ if ($continue == true) {
         // they can login using the account they just created.
         $_SESSION['login'] = "";
 
-        header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/login.php');
+        header('Location: login.php');
     }
 }
 ?>

@@ -13,7 +13,6 @@ session_start();
     <link rel="icon" sizes="192x192" href="../icon.png" />
     <link rel="apple-touch-icon" href="../icon.png" />
     <link rel="shortcut icon" href="../icon.png" type="image/x-icon" />
-    <script src="../navigate.js"></script>
 </head>
 
 <body>
