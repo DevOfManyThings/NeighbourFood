@@ -30,7 +30,7 @@ include ("checkCharityLogin.php");
 
 
 <?php      
-    $sql = "SELECT a.Item, a.Quantity, b.OrgName, a.Business_Email, a.Time_Start, a.Time_End
+    $sql = "SELECT a.Item, a.Quantity, b.OrgName, a.Business_Email, a.Time_Start, a.Time_End, a.Claimed_By
             FROM Food_Details a
             INNER JOIN Client_Details b ON a.Business_Email = b.Email";
 
@@ -40,12 +40,12 @@ include ("checkCharityLogin.php");
 
     if ($numRows > 0) 
     {
-        echo "Available for Claim<table><tr><th>Item Description</th></tr><tr><th>Quantity</th><th><tr><th>Business Name</th><th><tr><th>Business Email</th><th><tr><th>Donation Date</th><th><tr><th>Donation Available Until</th><th>";
+        echo "Donations<table><tr><th>Item Description</th></tr><tr><th>Quantity</th><th><tr><th>Business Name</th><th><tr><th>Business Email</th><th><tr><th>Donation Date</th><th><tr><th>Donation Available Until</th><th><tr><th>Claimed By</th><th>";
     
     // Output data of each row.
     while ($row = $result->fetch_assoc()) 
     {
-        echo "<tr><td>" . $row["Item"] . " " . $row["Quantity"] . " " . $row["OrgName"] . " " . $row["Business_Email"] . " " . $row["Time_Start"] . " " . $row["Time_End"] . "</td></tr>";
+        echo "<tr><td>" . $row["Item"] . " " . $row["Quantity"] . " " . $row["OrgName"] . " " . $row["Business_Email"] . " " . $row["Time_Start"] . " " . $row["Time_End"] . " " . $row["Claimed_By"] . "</td></tr>";
     }
     echo "</table>";
     } 
