@@ -18,14 +18,14 @@ session_start();
 <body>
     <header>
         <img id="icon" src="../icon.png" alt="icon"/>
-        <h1 id="heading"> NeighbourFood </h1>
+        <h1 id="mainHeading"> NeighbourFood </h1>
     </header>
     <?php if (empty($_SESSION['login'])) { ?>
         <form method="POST" action="authenticate.php">
             <input type="text" name="loginEmail" placeholder="Email" onfocus="this.placeholder = ''">
             <br>
             <br>
-            <input type="text" name="loginPass" placeholder="Password" onfocus="this.placeholder = ''">
+            <input type="password" name="loginPass" placeholder="Password" onfocus="this.placeholder = ''">
             <br>
             <br>
             <input class="button" type="submit" value="Login">
