@@ -41,9 +41,13 @@ function resize() {
             }
             if (element.tagName === "INPUT" || element.tagName === "BUTTON"){
                 //10
-                element.style.height = String(7 * L) + "px";
-                element.style.marginTop = String(2 * L) + "px";
-                element.style.marginBottom = String(1 * L) + "px";
+                if(element.getAttribute("type") !== "radio") {
+                    
+               
+                    element.style.height = String(7 * L) + "px";
+                    element.style.marginTop = String(2 * L) + "px";
+                    element.style.marginBottom = String(1 * L) + "px";
+                }
             }
             
         }
