@@ -1,5 +1,7 @@
 <?php
+
 include ("connection.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +15,7 @@ include ("connection.php");
 </head>
 
 <body>
-    <form method="POST" action = "register.php">
+    <form method="POST" action="register.php">
         <input type="text" name="orgName" placeholder="Business/Charity Name">
                 <br>
                 <br>
@@ -140,7 +142,7 @@ if ($continue == true) {
         header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/login.php');
     } else {
         $sql = "INSERT INTO Client_Details (OrgName, Number, Street, Postcode, Email, Password, Type )"
-                . "VALUES (   ?,      ?,      ?,       ?,       ?,       ?,      ?  )";
+                                 . "VALUES (   ?,      ?,      ?,       ?,       ?,       ?,      ?  )";
 
         $stmt = mysqli_stmt_init($connection);
 
