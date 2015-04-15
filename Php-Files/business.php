@@ -13,7 +13,7 @@ include ("checkBusinessLogin.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="../style.css"/>
     <script src="navigate.js"></script>
 </head>
 
@@ -45,7 +45,16 @@ include ("checkBusinessLogin.php");
 
     if ($numRows > 0) 
     {
-        echo "<p>Donations</p><table><tr><th>Item Description</th></tr><tr><th>Quantity</th><th><tr><th>Business Name</th><th><tr><th>Business Email</th><th><tr><th>Donation Date</th><th><tr><th>Donation Available Until</th><th><tr><th>Claimed By</th><th>";
+        echo "<p>Donations</p>"
+        . "<table>"
+                . "<tr>"
+                . "<th>Item Description</th>"
+                . "<th>Quantity</th>"
+                . "<th>Business Name</th>"
+                . "<th>Business Email</th>"
+                . "<th>Donation Date</th>"
+                . "<th>Donation Available Until</th>"
+                . "<th><tr><th>Claimed By</th><th>";
     
     // Output data of each row.
     while ($row = $result->fetch_assoc()) 
