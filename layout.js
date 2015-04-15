@@ -26,7 +26,7 @@ function resize() {
                 element.style.marginTop = String(3 * L) + "px";
                 element.style.marginBottom = String(2 * L) + "px";
             }
-            if (element.id === "heading") {
+            if (element.id === "mainHeading") {
                 //15
                 element.style.height = String(10 * L) + "px";
                 element.style.marginTop = String(L) + "px";
