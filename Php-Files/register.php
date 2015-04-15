@@ -15,20 +15,27 @@ include ("connection.php");
 </head>
 
 <body>
+    
+        <h1 id="heading">
+            Register
+        </h1>
     <form method="POST" action="register.php">
+        <h2 id="miniHeading">Organisation</h2>
         <input type="text" name="orgName" placeholder="Business/Charity Name">
                 <br />
+                <h2 id="miniHeading">Organisation address</h2>
                 <input type="number" min="1" name="number" placeholder="Number">
                 <br />
                 <input type="text" name="street" placeholder="Street">
                 <br />
                 <input type="text" name="postCode" placeholder="Post Code">
                 <br />
+                <h2 id="miniHeading">Login Details</h2>
                 <input type="text" name="regEmail" placeholder="Email"> 
                 <br />
-                <input type="text" name="regPass" placeholder="Password">
+                <input type="password" name="regPass" placeholder="Password">
                 <br />
-                <input type="text" name="re-enterPass" placeholder="Re-Enter Password">
+                <input type="password" name="re-enterPass" placeholder="Re-Enter Password">
                 <br />
                 <div id="radioMenu">
                 Business
@@ -36,7 +43,7 @@ include ("connection.php");
                 </div>
                 <div id="radioMenu">
                 Charity
-                <input type="radio" name="orgSelection" value="Charity">
+                 <input type="radio" name="orgSelection" value="Charity">   
                 </div>
                 <br />
                 <input class="button" type="submit" value="Register">
