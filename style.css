@@ -16,6 +16,7 @@
     display: none;
 }
 html, body{
+    top:0;
     height: 100vh;
     text-align: center;
     font-size: larger;
@@ -32,10 +33,20 @@ hr{
 header{
     background-color:#000042;
 }
-#heading{
+#mainHeading{
     color:white;
     /*background-color:#66C897;*/
     background-color:#60997D;
+    font-size: 2.5rem;
+}
+#heading{
+    color:#60997D;
+    /*background-color:#66C897;*/
+    font-size: 2rem;
+}
+#miniHeading{
+    color:#939393;
+    font-size: 1rem;
 }
 p{
     color:#000042;
@@ -47,11 +58,12 @@ form{
 
 #radioMenu{ 
     display: inline-block;
+    position:relative;
   
     width: 30%;
-    border-style: solid;
-    border-color: grey;
-    border-width: 1px;
+    
+    
+
 }
 .button{
     background-color: #e3e3e3;
@@ -63,13 +75,15 @@ form{
 }
 input{
     width: 60%;
+    padding-left:1%;
+    padding-right:1%;
 }
 input[type=submit]{
     width:auto;
 }
 input[type=radio]{
-    width: 100%;
-    
+    width:100%;
+ 
 }
 table{
     background-color: #e3e3e3;
@@ -85,6 +99,17 @@ td{
     border-style: solid;
     border-color: grey;
     border-width: 1px;
+}
+table[id=donations] th, table[id=donations] td{
+    width:10%;
+    padding-left:1%;
+    padding-right:1%;
+}
+table[id=business] th, table[id=business] td{
+    background-color:#e3e3e3;
+    width:15%;
+    padding-left:1%;
+    padding-right:1%;
 }
 
 
