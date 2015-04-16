@@ -95,7 +95,7 @@ if ($continue == true)
         mysqli_stmt_bind_param($stmt, 'ssssss', $itemDescription, $quantity, $start, $claimedBy, $email, $end);
         mysqli_stmt_execute($stmt);
     }  
-    header('Location: https://devweb2014.cis.strath.ac.uk/~ckb12185/CS317/NeighbourFood/donate.php');
+    header('Location: donate.php');
 }
 
 ?>
