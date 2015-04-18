@@ -37,7 +37,7 @@ include ("checkCharityLogin.php");
 
     if ($numRows > 0) 
     {
-        echo "Donations"
+        echo "All Donations"
         . "<table id=\"donations\">"
                 . "<thead>"
                 . "<tr>"
