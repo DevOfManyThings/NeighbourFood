@@ -27,24 +27,25 @@ include ("checkCharityLogin.php");
     <?php   
     
     // PHP to show the donations available.
-    $sql = "SELECT a.Item, a.Quantity, b.OrgName, a.Business_Email, a.Time_Start, a.Time_End, a.Claimed_By
+    $sql = "SELECT a.Item, a.Quantity, b.OrgName, a.Business_Email, a.Time_Start, a.Time_End, a.ItemID, a.Claimed_By
             FROM Food_Details a
-            INNER JOIN Client_Details b ON a.Business_Email = b.Email";
+            INNER JOIN Client_Details b ON a.Business_Email = b.Email
+            WHERE a.Claimed_By = 'Unclaimed'";
 
     $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
 
     $numRows = mysqli_num_rows($result);
-
+    
     if ($numRows > 0) 
     {
-        echo "All Donations"
+        echo "Available Donations"
         . "<table id=\"donations\">"
                 . "<thead>"
                 . "<tr>"
                 . "<th>Item Description</th>"
                 . "<th>Quantity</th>"
-                . "<th>Business Name</th>"
-                . "<th>Business Email</th>"
+                . "<th>Donated By</th>"
+                . "<th>Donator Contact</th>"
                 . "<th>Donated At</th>"
                 . "<th>Available Until</th>"
                 . "<th>Claimed By</th>"
@@ -55,6 +56,7 @@ include ("checkCharityLogin.php");
     // Output data of each row.
     while ($row = $result->fetch_assoc()) 
     {
+        $ItemID = $row["ItemID"];
         echo "<tr>"
         . "<td>" . $row["Item"] . "</td>"
         . "<td>" . $row["Quantity"] . "</td>"
@@ -63,7 +65,10 @@ include ("checkCharityLogin.php");
         . "<td>" . $row["Time_Start"] . "</td>"
         . "<td>" . $row["Time_End"] . "</td>" 
         . "<td>" . $row["Claimed_By"] . "</td>"
-                . "</tr>";
+        . "<td>" ?><form action="claim.php" method="POST">
+                   <input type="hidden" name="id" value="<?php echo $ItemID; ?>">
+                   <input type="submit" value="Claim"></form><?php
+         "</tr>";
     }
     echo "</tbody></table>";
     } 
@@ -92,17 +97,16 @@ include ("checkCharityLogin.php");
 
     if ($numRows > 0) 
     {
-        echo "Donations"
+        echo "Donations Claimed By You."
         . "<table id=\"donations\">"
                 . "<thead>"
                 . "<tr>"
                 . "<th>Item Description</th>"
                 . "<th>Quantity</th>"
-                . "<th>Business Name</th>"
-                . "<th>Business Email</th>"
+                . "<th>Donated By</th>"
+                . "<th>Donator Contact</th>"
                 . "<th>Donated At</th>"
                 . "<th>Available Until</th>"
-                . "<th>Claimed By</th>"
                 . "</tr>"
                 . "</thead><tbody>";
         
@@ -111,14 +115,13 @@ include ("checkCharityLogin.php");
     while ($row = $result->fetch_assoc()) 
     {
         echo "<tr>"
-        . "<td>" . $row["Item"] . "</td>"
-        . "<td>" . $row["Quantity"] . "</td>"
-        . "<td>" . $row["OrgName"] . "</td>"
-        . "<td>" . $row["Business_Email"] . "</td>" 
-        . "<td>" . $row["Time_Start"] . "</td>"
-        . "<td>" . $row["Time_End"] . "</td>" 
-        . "<td>" . $row["Claimed_By"] . "</td>"
-                . "</tr>";
+            . "<td>" . $row["Item"] . "</td>"
+            . "<td>" . $row["Quantity"] . "</td>"
+            . "<td>" . $row["OrgName"] . "</td>"
+            . "<td>" . $row["Business_Email"] . "</td>" 
+            . "<td>" . $row["Time_Start"] . "</td>"
+            . "<td>" . $row["Time_End"] . "</td>" 
+            . "</tr>";
     }
     echo "</tbody></table>";
     } 
@@ -130,5 +133,3 @@ include ("checkCharityLogin.php");
         <script src="../layout.js"></script>
     </body>
 </html>
-
-
