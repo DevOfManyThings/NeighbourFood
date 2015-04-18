@@ -38,8 +38,8 @@ include ("checkCharityLogin.php");
     
     if ($numRows > 0) 
     {
-        echo "Available Donations"
-        . "<table id=\"donations\">"
+        echo "<p>Available Donations<p>"
+            . "<table id=\"donations\">"
                 . "<thead>"
                 . "<tr>"
                 . "<th>Item Description</th>"
@@ -97,8 +97,8 @@ include ("checkCharityLogin.php");
 
     if ($numRows > 0) 
     {
-        echo "Donations Claimed By You."
-        . "<table id=\"donations\">"
+        echo "<p>Donations Claimed By You.<p>"
+             . "<table id=\"donations\">"
                 . "<thead>"
                 . "<tr>"
                 . "<th>Item Description</th>"
@@ -127,7 +127,7 @@ include ("checkCharityLogin.php");
     } 
     else 
     {
-        echo "You have claimed no donations.";
+        echo "<p>You Have Claimed No Donations.<p>";
     }
 ?>
         <script src="../layout.js"></script>
