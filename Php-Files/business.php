@@ -58,15 +58,14 @@ include ("checkBusinessLogin.php");
     while ($row = $result->fetch_assoc()) 
     {
         echo "<tr>"
-        . "<td>" . $row["Item"] . "</td>" 
-                . "<td>" . $row["Item"] . "</td> " 
-                . "<td>" . $row["Quantity"] . "</td> " 
-                . "<td>" . $row["OrgName"] . "</td> " 
-                . "<td>" . $row["Business_Email"] . "</td> " 
-                . "<td>" . $row["Time_Start"] . "</td> "
-                . "<td>" . $row["Time_End"] . "</td> " 
-                . "<td>" . $row["Claimed_By"] . "</td> " 
-                . "</tr>";
+            . "<td>" . $row["Item"] . "</td> " 
+            . "<td>" . $row["Quantity"] . "</td> " 
+            . "<td>" . $row["OrgName"] . "</td> " 
+            . "<td>" . $row["Business_Email"] . "</td> " 
+            . "<td>" . $row["Time_Start"] . "</td> "
+            . "<td>" . $row["Time_End"] . "</td> " 
+            . "<td>" . $row["Claimed_By"] . "</td> " 
+            . "</tr>";
     }
     echo "</tbody></table>";
     } 
