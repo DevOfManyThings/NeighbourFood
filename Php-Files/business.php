@@ -40,7 +40,7 @@ include ("checkBusinessLogin.php");
 
     if ($numRows > 0) 
     {
-        echo "<p>Donations</p>"
+        echo "<p>All Donations</p>"
         . "<table id=\"donations\">"
                 . "<thead>"
                 . "<tr>"
