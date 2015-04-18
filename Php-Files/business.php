@@ -71,7 +71,7 @@ include ("checkBusinessLogin.php");
     } 
     else 
     {
-        echo "No Donations Have Been Listed.";
+        echo "<p>No Donations Have Been Listed.<p>";
     }
     
     // PHP to show what the business thats currently logged in has donated.
@@ -91,7 +91,7 @@ include ("checkBusinessLogin.php");
     if ($numRows > 0) 
     {
         echo "<section>"
-                . "Donations Made By You."
+                . "<p>Donations Made By You.<p>"
                 . "<table id=\"business\">"
                 . "<thead>"
                 . "<tr>"
@@ -117,7 +117,7 @@ include ("checkBusinessLogin.php");
     } 
     else 
     {
-        echo "You Have Made No Donations.";
+        echo "<p>You Have Made No Donations.<p>";
     }
 ?>
         <script src="../layout.js"></script>
