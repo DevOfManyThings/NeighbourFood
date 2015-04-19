@@ -30,7 +30,13 @@ include ("checkBusinessLogin.php");
 
         
     // PHP to show the donations available.
-    $sql = "SELECT a.Item, a.Quantity, b.OrgName, a.Business_Email, a.Time_Start, a.Time_End, a.Claimed_By
+    $sql = "SELECT a.Item, 
+                   a.Quantity, 
+                   b.OrgName, 
+                   a.Business_Email, 
+                   DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,    
+                   DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End, 
+                   a.Claimed_By
             FROM Food_Details a
             INNER JOIN Client_Details b ON a.Business_Email = b.Email";
 
@@ -79,7 +85,13 @@ include ("checkBusinessLogin.php");
     {
         $email = $_SESSION['email'];
     } 
-    $sql = "SELECT a.Item, a.Quantity, b.OrgName, a.Business_Email, a.Time_Start, a.Time_End
+    
+    $sql = "SELECT a.Item, 
+                   a.Quantity, 
+                   b.OrgName, 
+                   a.Business_Email, 
+                   DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,    
+                   DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End
             FROM Food_Details a
             INNER JOIN Client_Details b ON a.Business_Email = b.Email
             WHERE a.Business_Email = '$email'";
@@ -102,7 +114,6 @@ include ("checkBusinessLogin.php");
                 . "</tr>"
                 . "</thead><tbody>";
         
-    
     // Output data of each row.
     while ($row = $result->fetch_assoc()) 
     {
