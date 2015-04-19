@@ -22,9 +22,9 @@ include ("connection.php");
         <br />
         <input type="number" min="1" name="quantity" placeholder="Quantity" />
         <br />
-        <input type="text" name="start" placeholder="Start Time" onfocus="this.placeholder = ''"/>
+        <input type="text" name="start" placeholder="Start Time (HH:MM)" onfocus="this.placeholder = ''"/>
         <br />
-        <input type="text" name="end" placeholder="End Time" onfocus="this.placeholder = ''"/>
+        <input type="text" name="end" placeholder="End Time (HH:MM)" onfocus="this.placeholder = ''"/>
         <br />   
         <input type="submit" value="Donate">
     </form>
@@ -57,9 +57,8 @@ if (isset($_POST['quantity'])) {
 }
 if (isset($_POST['start'])) {
     $start = $_POST['start'];
-
-    $startLength = strlen(trim($start));
-    if ($startLength > 0) {
+    
+    if (check_time($start)) {
         $continue = true;
     } else {
         $continue = false;
@@ -68,11 +67,19 @@ if (isset($_POST['start'])) {
 if (isset($_POST['end'])) {
     $end = $_POST['end'];
 
-    $endLength = strlen(trim($end));
-    if ($endLength > 0) {
+    if (check_time($end)) {
         $continue = true;
     } else {
         $continue = false;
+    }
+}
+
+function check_time($time) 
+{
+    if(strtotime($time)) {
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -83,7 +90,7 @@ if ($continue == true)
     {
         $email = $_SESSION['email'];
     }   
-    
+
     $sql = "INSERT INTO Food_Details ( Item,  Quantity,  Time_Start,  Claimed_By,  Business_Email, Time_End, ItemID)"
                         .  "VALUES   (  ?,        ?,         ?,           ?,              ?,          ?,      NULL )";
     
