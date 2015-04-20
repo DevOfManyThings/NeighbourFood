@@ -1,10 +1,7 @@
 <?php
-
 include ("connection.php");
 include ("checkCharityLogin.php");
-
 ?>
-
 <!DOCTYPE html>
 <head>
     <title>NeighbourFood</title>
@@ -17,14 +14,13 @@ include ("checkCharityLogin.php");
     <script src="claim.js"></script>
 </head>
 
-    <body>
-        <form method="POST" action="logout.php">
-            <input type="submit" value="Logout">
-        </form>
-    <?php   
-    
-    // PHP to show the donations available.
-    $sql = "SELECT a.Item, 
+<body>
+    <form method="POST" action="logout.php">
+        <input type="submit" value="Logout">
+    </form>
+<?php
+// PHP to show the donations available.
+$sql = "SELECT a.Item, 
                    a.Quantity, 
                    b.OrgName, 
                    a.Business_Email, 
@@ -36,38 +32,36 @@ include ("checkCharityLogin.php");
             INNER JOIN Client_Details b ON a.Business_Email = b.Email
             WHERE a.Claimed_By = 'Unclaimed'";
 
-    $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
+$result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
 
-    $numRows = mysqli_num_rows($result);
-    
-    if ($numRows > 0) 
-    {
-        echo "<p>Available Donations<p>"
-            . "<table id=\"donations\">"
-                . "<thead>"
-                . "<tr>"
-                . "<th>Item</th>"
-                . "<th>Quantity</th>"
-                . "<th>Donator</th>"
-                . "<th>Donator Contact</th>"
-                . "<th>Donated At</th>"
-                . "<th>Available Until</th>"
-                . "<th>Claimed By</th>"
-                . "</tr>"
-                . "</thead><tbody>";
-        
-    
+$numRows = mysqli_num_rows($result);
+
+if ($numRows > 0) {
+    echo "<p>Available Donations<p>"
+    . "<table id=\"donations\">"
+    . "<thead>"
+    . "<tr>"
+    . "<th>Item</th>"
+    . "<th>Quantity</th>"
+    . "<th>Donator</th>"
+    . "<th>Donator Contact</th>"
+    . "<th>Donated At</th>"
+    . "<th>Available Until</th>"
+    . "<th>Claimed By</th>"
+    . "</tr>"
+    . "</thead><tbody>";
+
+
     // Output data of each row.
-    while ($row = $result->fetch_assoc()) 
-    {
+    while ($row = $result->fetch_assoc()) {
         $ItemID = $row["ItemID"];
         echo "<tr>"
         . "<td>" . $row["Item"] . "</td>"
         . "<td>" . $row["Quantity"] . "</td>"
         . "<td>" . $row["OrgName"] . "</td>"
-        . "<td>" . $row["Business_Email"] . "</td>" 
+        . "<td>" . $row["Business_Email"] . "</td>"
         . "<td>" . $row["Time_Start"] . "</td>"
-        . "<td>" . $row["Time_End"] . "</td>" 
+        . "<td>" . $row["Time_End"] . "</td>"
         . "<td>" . $row["Claimed_By"] . "</td>"
         . "<td>" . "<form action=\"claim.php\" method=\"POST\">"
         . "<input type=\"hidden\" name=\"id\" value=\"$ItemID\">"
@@ -75,22 +69,19 @@ include ("checkCharityLogin.php");
         . "</tr>";
     }
     echo "</tbody></table>";
-    } 
-    else 
-    {
-        echo "No Donations Have Been Listed.";
-    }
-    
-    
-    
-    
-    // PHP to show what the charity thats currently logged in has claimed.
-    if(isset($_SESSION['email']))
-    {
-        $email = $_SESSION['email'];
-    } 
-    
-    $sql = "SELECT a.Item, 
+} else {
+    echo "No Donations Have Been Listed.";
+}
+
+
+
+
+// PHP to show what the charity thats currently logged in has claimed.
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+}
+
+$sql = "SELECT a.Item, 
                    a.Quantity, 
                    b.OrgName, 
                    a.Business_Email, 
@@ -101,45 +92,41 @@ include ("checkCharityLogin.php");
             INNER JOIN Client_Details b ON a.Business_Email = b.Email
             WHERE a.Claimed_By = '$email'";
 
-    $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
+$result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
 
-    $numRows = mysqli_num_rows($result);
+$numRows = mysqli_num_rows($result);
 
-    if ($numRows > 0) 
-    {
-        echo "<p>Donations Claimed By You.<p>"
-             . "<table id=\"donations\">"
-                . "<thead>"
-                . "<tr>"
-                . "<th>Item Description</th>"
-                . "<th>Quantity</th>"
-                . "<th>Donated By</th>"
-                . "<th>Donator Contact</th>"
-                . "<th>Donated At</th>"
-                . "<th>Available Until</th>"
-                . "</tr>"
-                . "</thead><tbody>";
-        
-    
+if ($numRows > 0) {
+    echo "<p>Donations Claimed By You.<p>"
+    . "<table id=\"donations\">"
+    . "<thead>"
+    . "<tr>"
+    . "<th>Item Description</th>"
+    . "<th>Quantity</th>"
+    . "<th>Donated By</th>"
+    . "<th>Donator Contact</th>"
+    . "<th>Donated At</th>"
+    . "<th>Available Until</th>"
+    . "</tr>"
+    . "</thead><tbody>";
+
+
     // Output data of each row.
-    while ($row = $result->fetch_assoc()) 
-    {
+    while ($row = $result->fetch_assoc()) {
         echo "<tr>"
-            . "<td>" . $row["Item"] . "</td>"
-            . "<td>" . $row["Quantity"] . "</td>"
-            . "<td>" . $row["OrgName"] . "</td>"
-            . "<td>" . $row["Business_Email"] . "</td>" 
-            . "<td>" . $row["Time_Start"] . "</td>"
-            . "<td>" . $row["Time_End"] . "</td>" 
-            . "</tr>";
+        . "<td>" . $row["Item"] . "</td>"
+        . "<td>" . $row["Quantity"] . "</td>"
+        . "<td>" . $row["OrgName"] . "</td>"
+        . "<td>" . $row["Business_Email"] . "</td>"
+        . "<td>" . $row["Time_Start"] . "</td>"
+        . "<td>" . $row["Time_End"] . "</td>"
+        . "</tr>";
     }
     echo "</tbody></table>";
-    } 
-    else 
-    {
-        echo "<p>You Have Claimed No Donations.<p>";
-    }
+} else {
+    echo "<p>You Have Claimed No Donations.<p>";
+}
 ?>
-        <script src="../layout.js"></script>
-    </body>
+    <script src="../layout.js"></script>
+</body>
 </html>
