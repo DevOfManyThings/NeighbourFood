@@ -46,9 +46,9 @@ include ("checkCharityLogin.php");
             . "<table id=\"donations\">"
                 . "<thead>"
                 . "<tr>"
-                . "<th>Item Description</th>"
+                . "<th>Item</th>"
                 . "<th>Quantity</th>"
-                . "<th>Donated By</th>"
+                . "<th>Donator</th>"
                 . "<th>Donator Contact</th>"
                 . "<th>Donated At</th>"
                 . "<th>Available Until</th>"
@@ -71,7 +71,7 @@ include ("checkCharityLogin.php");
         . "<td>" . $row["Claimed_By"] . "</td>"
         . "<td>" . "<form action=\"claim.php\" method=\"POST\">"
         . "<input type=\"hidden\" name=\"id\" value=\"$ItemID\">"
-        . "<input type=\"submit\" value=\"Claim\"></form>"
+        . "<input type=\"submit\" value=\"Claim\"></form>" . "</td>"
         . "</tr>";
     }
     echo "</tbody></table>";

@@ -4,7 +4,6 @@ include ("connection.php");
 include ("checkBusinessLogin.php");
 
 ?>
-
 <!DOCTYPE html>
 <head>
     <title>NeighbourFood</title>
@@ -50,9 +49,9 @@ include ("checkBusinessLogin.php");
         . "<table id=\"donations\">"
                 . "<thead>"
                 . "<tr>"
-                . "<th>Item Description</th>"
+                . "<th>Item</th>"
                 . "<th>Quantity</th>"
-                . "<th>Donated By</th>"
+                . "<th>Donator</th>"
                 . "<th>Donator Contact</th>"
                 . "<th>Donated At</th>"
                 . "<th>Available Until</th>"
