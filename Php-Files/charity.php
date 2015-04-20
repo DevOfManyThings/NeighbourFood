@@ -21,9 +21,6 @@ include ("checkCharityLogin.php");
         <form method="POST" action="logout.php">
             <input type="submit" value="Logout">
         </form>
-    </body>
-
-    <body>
     <?php   
     
     // PHP to show the donations available.
@@ -72,10 +69,10 @@ include ("checkCharityLogin.php");
         . "<td>" . $row["Time_Start"] . "</td>"
         . "<td>" . $row["Time_End"] . "</td>" 
         . "<td>" . $row["Claimed_By"] . "</td>"
-        . "<td>" ?><form action="claim.php" method="POST">
-                   <input type="hidden" name="id" value="<?php echo $ItemID; ?>">
-                   <input type="submit" value="Claim"></form><?php
-         "</tr>";
+        . "<td>" . "<form action=\"claim.php\" method=\"POST\">"
+        . "<input type=\"hidden\" name=\"id\" value=\"$ItemID\">"
+        . "<input type=\"submit\" value=\"Claim\"></form>"
+        . "</tr>";
     }
     echo "</tbody></table>";
     } 
