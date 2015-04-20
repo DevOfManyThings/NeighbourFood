@@ -1,5 +1,11 @@
 /* 
     Created on : 07-Apr-2015, 17:32:06
+
+    Colour log:
+    White: "ghostwhite";
+    Green: #60997D;
+    Blue: #000042;
+    Light Gr: #939393
 */
 *{
     margin: 0;
@@ -9,8 +15,6 @@
     -ms-user-select: none;      
     -o-user-select: none;
     user-select: none; 
-
-
 }
 .closed{
     display: none;
@@ -28,28 +32,27 @@ hr{
     width:80%;
     margin-left:10%;
     color:grey;
-    
 }
 header{
     background-color:#000042;
 }
 #mainHeading{
     color:white;
-    /*background-color:#66C897;*/
     background-color:#60997D;
-    font-size: 2.5rem;
+    font-size: 2em;
+  
 }
 #heading{
     color:#60997D;
-    /*background-color:#66C897;*/
-    font-size: 2rem;
+    font-size: 1.5em;
 }
 #miniHeading{
     color:#939393;
-    font-size: 1rem;
+    font-size: 1em;
 }
 p{
     color:#000042;
+    font-size: 1em;
 }
 form{
     width:100%;
@@ -68,7 +71,7 @@ form{
 .button{
     background-color: #e3e3e3;
     border-style: solid;
-    border-color: grey;
+    border-color: #939393;
     border-width: 1px;
     padding-left: 3%;
     padding-right: 3%;
@@ -77,6 +80,7 @@ input{
     width: 60%;
     padding-left:1%;
     padding-right:1%;
+    font-size: 1em;
 }
 input[type=submit]{
     width:auto;
@@ -110,6 +114,16 @@ table[id=business] th, table[id=business] td{
     width:15%;
     padding-left:1%;
     padding-right:1%;
+}
+@media screen and (max-width: 340px) {
+    html, body{
+        font-size:1em;
+    }
+}
+@media screen and (max-height: 400px) {
+    html, body{
+        font-size:1em;
+    }
 }
 
 
