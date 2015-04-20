@@ -10,7 +10,7 @@ include ("checkBusinessLogin.php");
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" type="text/css" href="../style.css"/>
-    <script src="navigate.js"></script>
+    <script src="../navigate.js"></script>
 </head>
 
 <body>  
@@ -49,7 +49,7 @@ if ($numRows > 0) {
     . "<th>Quantity</th>"
     . "<th>Donator</th>"
     . "<th>Donator Contact</th>"
-    . "<th>Donated At</th>"
+    . "<th>Available From</th>"
     . "<th>Available Until</th>"
     . "<th>Claimed By</th>"
     . "</tr>"
@@ -97,9 +97,9 @@ if ($numRows > 0) {
     . "<table id=\"business\">"
     . "<thead>"
     . "<tr>"
-    . "<th>Item Description</th>"
-    . "<th>Quantity</th>"
-    . "<th>Donated At</th>"
+    . "<th>Item</th>"
+    . "<th>Qu</th>"
+    . "<th>Available From</th>"
     . "<th>Available Until</th>"
     . "</tr>"
     . "</thead><tbody>";

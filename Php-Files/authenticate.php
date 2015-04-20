@@ -46,7 +46,9 @@ if ($password == $pass) {
     else if (numrows < 1) {
         session_start();
         $_SESSION['login'] = "";
+        
         header('Location: login.php');
+        
     }
 } else { // If nothing is entered into the login or password textbox.
     session_start();
