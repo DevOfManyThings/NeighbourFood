@@ -13,7 +13,7 @@ include ("connection.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="../style.css"/>
 </head>
 
 <body>
@@ -28,7 +28,7 @@ include ("connection.php");
         <br />   
         <input type="submit" value="Donate">
     </form>
-    <script src="layout.js"></script>
+    <script src="../layout.js"></script>
 </body>
 </html>
 

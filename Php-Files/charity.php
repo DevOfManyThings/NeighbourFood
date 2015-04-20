@@ -42,12 +42,9 @@ if ($numRows > 0) {
     . "<thead>"
     . "<tr>"
     . "<th>Item</th>"
-    . "<th>Qu.</th>"
-    . "<th>Donator</th>"
-    . "<th>Contact</th>"
-    . "<th>Available From</th>"
-    . "<th>Available Until</th>"
-    . "<th>Claimed By</th>"
+    . "<th>Available</th>"
+    . "<th>Distance</th>"
+    . "<th></th>"
     . "</tr>"
     . "</thead><tbody>";
 
@@ -56,16 +53,10 @@ if ($numRows > 0) {
     while ($row = $result->fetch_assoc()) {
         $ItemID = $row["ItemID"];
         echo "<tr>"
-        . "<td>" . $row["Item"] . "</td>"
-        . "<td>" . $row["Quantity"] . "</td>"
-        . "<td>" . $row["OrgName"] . "</td>"
-        . "<td>" . $row["Business_Email"] . "</td>"
-        . "<td>" . $row["Time_Start"] . "</td>"
-        . "<td>" . $row["Time_End"] . "</td>"
-        . "<td>" . $row["Claimed_By"] . "</td>"
-        . "<td>" . "<form action=\"claim.php\" method=\"POST\">"
-        . "<input type=\"hidden\" name=\"id\" value=\"$ItemID\">"
-        . "<input type=\"submit\" value=\"Claim\"></form>" . "</td>"
+        . "<td>" . $row["Item"]. " (" . $row["Quantity"]. ")</td>"
+        . "<td>" . $row["Time_Start"] ." - " . $row["Time_End"] . "</td>"
+        . "<td></td>"
+        . "<td>" . "<button class = \"button\">See More</button>". "</td>"
         . "</tr>";
     }
     echo "</tbody></table>";
