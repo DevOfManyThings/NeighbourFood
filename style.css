@@ -82,14 +82,16 @@ input{
     padding-right:1%;
     font-size: 1em;
 }
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
     color:#000042;
 }
-input[type=text]:active, input[type=password]:active {
-    
+input[type=text]:active, input[type=password]:active, input[type=email]:active {
     color: ghostwhite;
     background-color: #60997D;
-    
+}
+input:target{
+    color: ghostwhite;
+    background-color: #60997D;
 }
 input[type=submit]{
     width:auto;

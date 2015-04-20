@@ -31,7 +31,7 @@ include ("connection.php");
                 <input type="text" name="postCode" placeholder="Post Code">
                 <br />
                 <h2 id="miniHeading">Login Details</h2>
-                <input type="text" name="regEmail" placeholder="Email"> 
+                <input type="email" name="regEmail" placeholder="Email"> 
                 <br />
                 <input type="password" name="regPass" placeholder="Password">
                 <br />

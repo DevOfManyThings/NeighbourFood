@@ -22,7 +22,7 @@ session_start();
     </header>
     <?php if (empty($_SESSION['login'])) { ?>
         <form method="POST" action="authenticate.php">
-            <input type="text" name="loginEmail" placeholder="Email" onfocus="this.placeholder = '';">
+            <input type="email" name="loginEmail" placeholder="Email" onfocus="this.placeholder = '';">
             <br />
             <input type="password" name="loginPass" placeholder="Password" onfocus="this.placeholder = '';">
             <br />
