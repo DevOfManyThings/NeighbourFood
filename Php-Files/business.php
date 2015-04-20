@@ -1,7 +1,10 @@
 <?php
-include ("connection.php");
-include ("checkBusinessLogin.php");
+
+    include ("connection.php");
+    include ("checkBusinessLogin.php");
+    
 ?>
+
 <!DOCTYPE html>
 <head>
     <title>NeighbourFood</title>
@@ -12,29 +15,34 @@ include ("checkBusinessLogin.php");
     <link rel="stylesheet" type="text/css" href="../style.css"/>
     <script src="../navigate.js"></script>
 </head>
+ 
 
-<body>  
 <?php
 echo "<header>"
  . "<h2><!-- We could put currently logged on business name here --> </h2>"
  . "</header>"
- . "<!-- Navigate to donate page for business -->"
- . "<button class=\"button\" onclick=\"navTo('donate.php')\">Donate</button>"
- . "<form method=\"POST\" action=\"logout.php\">"
- . "<input class=\"button\" type=\"submit\" value=\"Logout\">"
- . "</form>";
+ . "<!-- Navigation -->"
+ . "<form method=\"POST\" action=\"donate.php\"></button>"
+ . "<input class=\"button\" type=\"submit\" value=\"Donate\"></form>"
+ . "<form method=\"POST\" action=\"logout.php\"></button>"
+ . "<input class=\"button\" type=\"submit\" value=\"Logout\"></form>"
+ . "<form method=\"POST\" action=\"myDonations.php\"></button>"
+ . "<input class=\"button\" type=\"submit\" value=\"My Donations\"></form>";
+
+
+
 
 
 // PHP to show the donations available.
 $sql = "SELECT a.Item, 
-                   a.Quantity, 
-                   b.OrgName, 
-                   a.Business_Email, 
-                   DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,    
-                   DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End, 
-                   a.Claimed_By
-            FROM Food_Details a
-            INNER JOIN Client_Details b ON a.Business_Email = b.Email";
+               a.Quantity, 
+               b.OrgName, 
+               a.Business_Email, 
+               DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,    
+               DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End, 
+               a.Claimed_By
+        FROM Food_Details a
+        INNER JOIN Client_Details b ON a.Business_Email = b.Email";
 
 $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
 
@@ -46,11 +54,9 @@ if ($numRows > 0) {
     . "<thead>"
     . "<tr>"
     . "<th>Item</th>"
-    . "<th>Quantity</th>"
-    . "<th>Donator</th>"
-    . "<th>Donator Contact</th>"
-    . "<th>Available From</th>"
-    . "<th>Available Until</th>"
+    . "<th>Donated By</th>"
+    . "<th>Contact</th>"
+    . "<th>Available</th>"
     . "<th>Claimed By</th>"
     . "</tr>"
     . "</thead><tbody>";
@@ -58,12 +64,10 @@ if ($numRows > 0) {
     // Output data of each row.
     while ($row = $result->fetch_assoc()) {
         echo "<tr>"
-        . "<td>" . $row["Item"] . "</td> "
-        . "<td>" . $row["Quantity"] . "</td> "
+        . "<td>" . $row["Item"]. " (" . $row["Quantity"]. ")</td>"
         . "<td>" . $row["OrgName"] . "</td> "
         . "<td>" . $row["Business_Email"] . "</td> "
-        . "<td>" . $row["Time_Start"] . "</td> "
-        . "<td>" . $row["Time_End"] . "</td> "
+        . "<td>" . $row["Time_Start"] . " - " . $row["Time_End"] . "</td>"
         . "<td>" . $row["Claimed_By"] . "</td> "
         . "</tr>";
     }
@@ -72,52 +76,8 @@ if ($numRows > 0) {
     echo "<p>No Donations Have Been Listed.<p>";
 }
 
-// PHP to show what the business thats currently logged in has donated.
-if (isset($_SESSION['email'])) {
-    $email = $_SESSION['email'];
-}
-
-$sql = "SELECT a.Item, 
-                   a.Quantity, 
-                   b.OrgName, 
-                   a.Business_Email, 
-                   DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,    
-                   DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End
-            FROM Food_Details a
-            INNER JOIN Client_Details b ON a.Business_Email = b.Email
-            WHERE a.Business_Email = '$email'";
-
-$result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
-
-$numRows = mysqli_num_rows($result);
-
-if ($numRows > 0) {
-    echo "<section>"
-    . "<p>Donations Made By You.<p>"
-    . "<table id=\"business\">"
-    . "<thead>"
-    . "<tr>"
-    . "<th>Item</th>"
-    . "<th>Qu</th>"
-    . "<th>Available From</th>"
-    . "<th>Available Until</th>"
-    . "</tr>"
-    . "</thead><tbody>";
-
-    // Output data of each row.
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>"
-        . "<td>" . $row["Item"] . "</td>"
-        . "<td>" . $row["Quantity"] . "</td>"
-        . "<td>" . $row["Time_Start"] . "</td>"
-        . "<td>" . $row["Time_End"] . "</td>"
-        . "</tr>";
-    }
-    echo "</tbody></table>";
-} else {
-    echo "<p>You Have Made No Donations.<p>";
-}
 ?>
+
     <script src="../layout.js"></script>
 </body>
 </html>
