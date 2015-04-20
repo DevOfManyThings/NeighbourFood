@@ -1,7 +1,10 @@
 <?php
-include ("connection.php");
-include ("checkCharityLogin.php");
+
+    include ("connection.php");
+    include ("checkCharityLogin.php");
+    
 ?>
+
 <!DOCTYPE html>
 <head>
     <title>NeighbourFood</title>
@@ -14,23 +17,25 @@ include ("checkCharityLogin.php");
     <script src="claim.js"></script>
 </head>
 
-<body>
-    <form method="POST" action="logout.php">
-        <input type="submit" value="Logout">
-    </form>
 <?php
+echo "<header>"
+ . "<h2><!-- We could put currently logged on charity name here --> </h2>"
+ . "</header>"
+ . "<!-- Navigation -->"
+ . "<form method=\"POST\" action=\"myClaims.php\"></button>"
+ . "<input class=\"button\" type=\"submit\" value=\"My Claims\"></form>"
+ . "<form method=\"POST\" action=\"logout.php\"></button>"
+ . "<input class=\"button\" type=\"submit\" value=\"Logout\"></form>";
+
+
+
 // PHP to show the donations available.
-$sql = "SELECT a.Item, 
-                   a.Quantity, 
-                   b.OrgName, 
-                   a.Business_Email, 
-                   DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,    
-                   DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End, 
-                   a.ItemID, 
-                   a.Claimed_By    
-            FROM Food_Details a
-            INNER JOIN Client_Details b ON a.Business_Email = b.Email
-            WHERE a.Claimed_By = 'Unclaimed'";
+$sql = "SELECT a.Item, a.Quantity,
+               DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,    
+               DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End, 
+               a.ItemID
+               FROM Food_Details a
+               WHERE a.Claimed_By = 'Unclaimed'";
 
 $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
 
@@ -56,67 +61,16 @@ if ($numRows > 0) {
         . "<td>" . $row["Item"]. " (" . $row["Quantity"]. ")</td>"
         . "<td>" . $row["Time_Start"] ." - " . $row["Time_End"] . "</td>"
         . "<td></td>"
-        . "<td>" . "<button class = \"button\">See More</button>". "</td>"
-        . "</tr>";
+        . "<td>" ?><form action="claim.php" method="POST">
+                   <input type="hidden" name="id" value="<?php echo $ItemID; ?>">
+                   <input type="submit" value="Claim"></form><?php
+        "</tr>";
     }
     echo "</tbody></table>";
 } else {
     echo "No Donations Have Been Listed.";
 }
 
-
-
-
-// PHP to show what the charity thats currently logged in has claimed.
-if (isset($_SESSION['email'])) {
-    $email = $_SESSION['email'];
-}
-
-$sql = "SELECT a.Item, 
-                   a.Quantity, 
-                   b.OrgName, 
-                   a.Business_Email, 
-                   DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,    
-                   DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End, 
-                   a.Claimed_By
-            FROM Food_Details a
-            INNER JOIN Client_Details b ON a.Business_Email = b.Email
-            WHERE a.Claimed_By = '$email'";
-
-$result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
-
-$numRows = mysqli_num_rows($result);
-
-if ($numRows > 0) {
-    echo "<p>Donations Claimed By You.<p>"
-    . "<table id=\"donations\">"
-    . "<thead>"
-    . "<tr>"
-    . "<th>Item Description</th>"
-    . "<th>Quantity</th>"
-    . "<th>Donated By</th>"
-    . "<th>Contact</th>"
-    . "<th>Available From</th>"
-    . "<th>Available Until</th>"
-    . "</tr>"
-    . "</thead><tbody>";
-
-
-    // Output data of each row.
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>"
-        . "<td>" . $row["Item"] . "</td>"
-        . "<td>" . $row["Quantity"] . "</td>"
-        . "<td>" . $row["OrgName"] . "</td>"
-        . "<td>" . $row["Business_Email"] . "</td>"
-        . "<td>" . $row["Time_Start"] . "</td>"
-        . "<td>" . $row["Time_End"] . "</td>"
-        . "</tr>";
-    }
-    echo "</tbody></table>";
-} else {
-    echo "<p>You Have Claimed No Donations.<p>";
-}
 ?>
     <script src="../layout.js"></script>
 </body>
