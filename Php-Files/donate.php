@@ -55,19 +55,13 @@ if (isset($_POST['quantity'])) {
         $continue = false;
     }
 }
-if (isset($_POST['start'])) {
+if (isset($_POST['start']) && (isset($_POST['end']))) 
+{
     $start = $_POST['start'];
-    
-    if (check_time($start)) {
-        $continue = true;
-    } else {
-        $continue = false;
-    }
-}
-if (isset($_POST['end'])) {
     $end = $_POST['end'];
-
-    if (check_time($end)) {
+    
+    if (check_time($start) && (check_time($end)))  
+    {
         $continue = true;
     } else {
         $continue = false;
