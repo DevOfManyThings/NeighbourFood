@@ -2,22 +2,31 @@
 
 include ("connection.php");
 include ("checkCharityLogin.php");
+?>
+<!DOCTYPE html>
+<head>
+    <title>NeighbourFood</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="../style.css"/>
+</head>
 
+<body>
+<?php
 
-echo "<header>"
- . "<h2><!-- We could put currently logged on charity name here --> </h2>"
- . "</header>"
- . "<!-- Navigation -->"
- . "<form method=\"POST\" action=\"charity.php\"></button>"
- . "<input class=\"button\" type=\"submit\" value=\"Home\"></form>";
-
-
-// PHP to show what the charity thats currently logged in has claimed.
 if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 }
 
+echo"<!-- Navigation -->"
+ . "<form method=\"POST\" action=\"charity.php\"></button>"
+ . "<input class=\"button\" type=\"submit\" value=\"Home\"></form>";
+
+
 $sql = "SELECT a.Item, 
+               a.ItemID,
                a.Quantity, 
                b.OrgName, 
                a.Business_Email, 
@@ -38,21 +47,24 @@ if ($numRows > 0) {
     . "<thead>"
     . "<tr>"
     . "<th>Item</th>"
-    . "<th>Donated By</th>"
-    . "<th>Contact</th>"
     . "<th>Available</th>"
+    . "<th>Distance</th>"
+    . "<th></th>"
     . "</tr>"
     . "</thead><tbody>";
 
 
     // Output data of each row.
     while ($row = $result->fetch_assoc()) {
+        $ItemID = $row["ItemID"];
         echo "<tr>"
         . "<td>" . $row["Item"]. " (" . $row["Quantity"]. ")</td>"
-        . "<td>" . $row["OrgName"] . "</td>"
-        . "<td>" . $row["Business_Email"] . "</td>"
-        . "<td>" . $row["Time_Start"] . " - " . $row["Time_End"] . "</td>"
-        . "</tr>";
+        . "<td>" . $row["Time_Start"] ." - " . $row["Time_End"] . "</td>"
+        . "<td>" . "<!-- TODO distance from charity base to donator business base -->" . "</td>"
+        . "<td>" ?><form action="viewDonation.php" method="POST">
+                   <input type="hidden" name="id" value="<?php echo $ItemID; ?>">
+                   <input type="submit" value="More Details"></form><?php
+        "</tr>";
     }
     echo "</tbody></table>";
 } else {
@@ -60,3 +72,6 @@ if ($numRows > 0) {
 }
 
 ?>
+        <script src="../layout.js"></script>
+</body>
+</html>
