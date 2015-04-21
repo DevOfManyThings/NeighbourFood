@@ -11,6 +11,6 @@ $sql = "DELETE FROM Food_Details
                   
 mysqli_query($connection, $sql);
 
-header('Location: myDonations.php');
+header('Location: business.php');
 
 ?>

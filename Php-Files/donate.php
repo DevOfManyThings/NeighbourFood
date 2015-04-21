@@ -96,7 +96,7 @@ if ($continue == true)
         mysqli_stmt_bind_param($stmt, 'ssssss', $itemDescription, $quantity, $start, $claimedBy, $email, $end);
         mysqli_stmt_execute($stmt);
     }  
-    header('Location: donate.php');
+    header('Location: business.php');
 }
 
 ?>
