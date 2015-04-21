@@ -42,7 +42,8 @@ $sql = "SELECT a.Item,
                DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End, 
                a.Claimed_By
         FROM Food_Details a
-        INNER JOIN Client_Details b ON a.Business_Email = b.Email";
+        INNER JOIN Client_Details b ON a.Business_Email = b.Email
+        WHERE a.Claimed_By = 'Unclaimed'";
 
 $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
 
