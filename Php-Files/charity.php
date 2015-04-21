@@ -34,9 +34,7 @@ $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . my
 
 $row = mysqli_fetch_row($result);
 
-echo "<header>"
- . "<h2> Hello $row[0]!</h2>"
- . "</header>"
+echo"<h2 id=\"heading\">$row[0]</h2>"
  . "<!-- Navigation -->"
  . "<form method=\"POST\" action=\"myClaims.php\"></button>"
  . "<input class=\"button\" type=\"submit\" value=\"My Claims\"></form>"
@@ -76,9 +74,10 @@ if ($numRows > 0) {
         echo "<tr>"
         . "<td>" . $row["Item"]. " (" . $row["Quantity"]. ")</td>"
         . "<td>" . $row["Time_Start"] ." - " . $row["Time_End"] . "</td>"
-        . "<td>" ?><form action="claim.php" method="POST">
+        . "<td>" . "<!-- TODO distance from charity base to donator business base -->" . "</td>"
+        . "<td>" ?><form action="viewDonation.php" method="POST">
                    <input type="hidden" name="id" value="<?php echo $ItemID; ?>">
-                   <input type="submit" value="Claim"></form><?php
+                   <input type="submit" value="More Details"></form><?php
         "</tr>";
     }
     echo "</tbody></table>";
