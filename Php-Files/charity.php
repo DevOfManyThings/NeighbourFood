@@ -18,8 +18,23 @@
 </head>
 
 <?php
+
+
+
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+}
+
+$sql = "SELECT OrgName
+        FROM Client_Details
+        WHERE Email = '$email'";
+
+$result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
+
+$row = mysqli_fetch_row($result);
+
 echo "<header>"
- . "<h2><!-- We could put currently logged on charity name here --> </h2>"
+ . "<h2> Hello $row[0]!</h2>"
  . "</header>"
  . "<!-- Navigation -->"
  . "<form method=\"POST\" action=\"myClaims.php\"></button>"
@@ -60,7 +75,6 @@ if ($numRows > 0) {
         echo "<tr>"
         . "<td>" . $row["Item"]. " (" . $row["Quantity"]. ")</td>"
         . "<td>" . $row["Time_Start"] ." - " . $row["Time_End"] . "</td>"
-        . "<td></td>"
         . "<td>" ?><form action="claim.php" method="POST">
                    <input type="hidden" name="id" value="<?php echo $ItemID; ?>">
                    <input type="submit" value="Claim"></form><?php
