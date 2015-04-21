@@ -15,11 +15,25 @@
     <link rel="stylesheet" type="text/css" href="../style.css"/>
     <script src="../navigate.js"></script>
 </head>
- 
+
 
 <?php
+
+if (isset($_SESSION['email'])) {
+    $email = $_SESSION['email'];
+}
+
+$sql = "SELECT OrgName
+        FROM Client_Details
+        WHERE Email = '$email'";
+
+$result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
+
+$row = mysqli_fetch_row($result);
+
+
 echo "<header>"
- . "<h2><!-- We could put currently logged on business name here --> </h2>"
+ . "<h2> Hello $row[0]!</h2>"
  . "</header>"
  . "<!-- Navigation -->"
  . "<form method=\"POST\" action=\"donate.php\"></button>"
