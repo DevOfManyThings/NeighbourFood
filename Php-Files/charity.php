@@ -85,7 +85,6 @@ if ($numRows > 0) {
 } else {
     echo "No Donations Have Been Listed.";
 }
-
 ?>
     <script src="../layout.js"></script>
 </body>
