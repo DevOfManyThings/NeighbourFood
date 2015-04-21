@@ -17,7 +17,7 @@
     <script src="navigate.js"></script>
     <script src="claim.js"></script>
 </head>
-
+<body>
 <?php
 
 

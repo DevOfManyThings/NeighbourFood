@@ -17,7 +17,7 @@
     <script src="../navigate.js"></script>
 </head>
 
-
+<body>
 <?php
 
 if (isset($_SESSION['email'])) {
