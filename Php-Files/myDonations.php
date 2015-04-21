@@ -1,5 +1,4 @@
 <?php
-
 include ("connection.php");
 include ("checkBusinessLogin.php");
 
@@ -19,12 +18,13 @@ if (isset($_SESSION['email'])) {
 }
 
 $sql = "SELECT a.Item, 
-                   a.Quantity, 
+                    a.Quantity, 
                    b.OrgName, 
                    a.Business_Email, 
                    DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,    
                    DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End,
-                   a.Claimed_By
+                   a.Claimed_By,
+                   a.ItemID
             FROM Food_Details a
             INNER JOIN Client_Details b ON a.Business_Email = b.Email
             WHERE a.Business_Email = '$email'";
@@ -41,23 +41,29 @@ if ($numRows > 0) {
     . "<tr>"
     . "<th>Item</th>"
     . "<th>Available</th>"
-    . "<th>Claimed By</th>"      
+    . "<th>Claimed By</th>"
     . "</tr>"
     . "</thead><tbody>";
 
     // Output data of each row.
     while ($row = $result->fetch_assoc()) {
+        $ItemID = $row["ItemID"];
+        $Claimed = $row["Claimed_By"];
         echo "<tr>"
-        . "<td>" . $row["Item"]. " (" . $row["Quantity"]. ")</td>"
+        . "<td>" . $row["Item"] . " (" . $row["Quantity"] . ")</td>"
         . "<td>" . $row["Time_Start"] . " - " . $row["Time_End"] . "</td>"
-        . "<td>" . $row["Claimed_By"] . "</td> "
-        . "</tr>";
+        . "<td>" . $row["Claimed_By"] . "</td>";
+        if ($Claimed == "Unclaimed") {
+            echo
+            "<td>"
+            ?><form action="removeDonation.php" method="POST">
+                <input type="hidden" name="id" value="<?php echo $ItemID; ?>">
+                <input type="submit" value="Delete"></form><?php
+            "</tr>";
+        }
     }
     echo "</tbody></table>";
 } else {
     echo "<p>You Have Made No Donations.<p>";
 }
-
-
-
 ?>
