@@ -74,17 +74,21 @@ input{
     padding-left:1%;
     padding-right:1%;
     font-size: 1em;
+
 }
-input[type=text], input[type=password], input[type=email] {
-    color:#000042;
+input[type=email], input[type=password], input[type=number], input[type=text]{
+    border-style:solid;
+    border-width: 1px;   
 }
-input[type=text]:active, input[type=password]:active, input[type=email]:active {
+input[type=email]:valid, input[type=password]:valid, input[type=number]:valid, input[type=text]:valid{
+    color: #000042;
+    background-color: white;
+    border-color:#60997D;
+}
+input:invalid{
     color: ghostwhite;
-    background-color: #60997D;
-}
-input:target{
-    color: ghostwhite;
-    background-color: #60997D;
+    background-color: indianred;
+    border-color:maroon;
 }
 input[type=submit]{
     width:auto;
