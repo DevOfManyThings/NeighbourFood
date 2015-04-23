@@ -12,6 +12,7 @@ include ("connection.php");
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" type="text/css" href="../style.css"/>
+    <script src="../getLongAndLang.js"> </script>
 </head>
 
 <body>
@@ -21,7 +22,9 @@ include ("connection.php");
         </h1>
     <form method="POST" action="register.php">
         <h2 id="miniHeading">Organisation</h2>
-        <input type="text" name="orgName" placeholder="Business/Charity Name">
+                <input type="text" name="orgName" placeholder="Business/Charity Name">
+                <input type="hidden" name="longitude" value="" id="phoneLongitude" />
+                <input type="hidden" name="latitude" value="" id="phoneLatitude"/>
                 <br />
                 <h2 id="miniHeading">Organisation address</h2>
                 <input type="number" min="1" name="number" placeholder="Number">
@@ -49,11 +52,35 @@ include ("connection.php");
                 <input class="button" type="submit" value="Register">
             </form>
             <script src="../layout.js"></script>
+            <script>checkGpsOn();</script>
 </body>
 </html>
 
 <?php
 $continue = false;
+
+if (isset($_POST['longitude'])){
+    $longitude = $_POST['longitude'];
+    
+    $longitudeLength = strlen(trim($longitude));
+    if($longitudeLength >0){
+        $continue = true;
+    }
+    else {
+        $continue = false;
+    }
+}
+if (isset($_POST['latitude'])){
+    $latitude = $_POST['latitude'];
+    
+    $latitudeLength = strlen(trim($latitude));
+    if($latitudeLength >0){
+        $continue = true;
+    }
+    else {
+        $continue = false;
+    }
+}
 
 if (isset($_POST['orgName'])) {
     $orgName = $_POST['orgName'];
@@ -144,13 +171,13 @@ if ($continue == true) {
         // Email already in use - take them back to the login page.         
         header('Location: login.php');
     } else {
-        $sql = "INSERT INTO Client_Details (OrgName, Number, Street, Postcode, Email, Password, Type )"
-                                 . "VALUES (   ?,      ?,      ?,       ?,       ?,       ?,      ?  )";
+        $sql = "INSERT INTO Client_Details (OrgName, Number, Street, Postcode, Email, Password, Type, Longitude, Latitude)"
+                                 . "VALUES (   ?,      ?,      ?,       ?,       ?,       ?,      ?,      ?,         ?)";
 
         $stmt = mysqli_stmt_init($connection);
 
         if (mysqli_stmt_prepare($stmt, $sql)) {
-            mysqli_stmt_bind_param($stmt, 'sssssss', $orgName, $number, $street, $postCode, $email, $password, $type);
+            mysqli_stmt_bind_param($stmt, 'sssssssdd', $orgName, $number, $street, $postCode, $email, $password, $type, $longitude, $latitude);
             mysqli_stmt_execute($stmt);
         }
 
