@@ -21,7 +21,14 @@ include ("connection.php");
             Register
         </h1>
     <form method="POST" action="register.php">
+        <h3 id="warning">
+            Please only register in your place of business
+        </h3>
+        <h4 id="smallWarning">
+            We use your location to calculate distances for charities
+        </h4>
         <h2 id="miniHeading">Organisation</h2>
+        
                 <input type="text" name="orgName" placeholder="Business/Charity Name">
                 <input type="hidden" name="longitude" value="" id="phoneLongitude" />
                 <input type="hidden" name="latitude" value="" id="phoneLatitude"/>
