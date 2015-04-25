@@ -27,15 +27,23 @@ echo "<!-- Navigation -->"
 $ItemID = $_POST['id'];
 
 // Attempt to get single item ItemId and the details of the business that donated it
-$sql = "SELECT a.Item, a.Quantity, a.Time_Start, a.Time_End, b.OrgName, b.Email, b.Number, b.Street, b.Postcode, a.Claimed_By
+$sql = "SELECT a.Item, 
+               a.Quantity, 
+               DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,
+               DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End, 
+               b.OrgName, 
+               b.Email, 
+               b.Number, 
+               b.Street, 
+               b.Postcode, 
+               a.Claimed_By
             FROM Food_Details a
             INNER JOIN Client_Details b ON a.Business_Email = b.Email
             WHERE a.ItemId = '$ItemID'";
+            
 $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
 
-
 $numRows = mysqli_num_rows($result);
-
 
 if ($numRows > 0) {
     //Print result
@@ -67,13 +75,10 @@ if ($numRows > 0) {
           }
            
                    echo "</section>";
-               
-          
       }
-
-
-    
-} else {
+} 
+else 
+{
     echo "<p>Error: This donation has been removed<p>";
 }
 
