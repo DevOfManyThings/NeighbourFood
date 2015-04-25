@@ -30,13 +30,13 @@ echo"<!-- Navigation -->"
         <br />
         <input type="number" min="1" name="quantity" placeholder="Quantity" />
         <br />
-        <input type="text" name="start" placeholder="Start Time (HH:MM)" onfocus="this.placeholder = ''"/>
+        <input type="text" name="start" placeholder="Available from... 24-hour(HH:MM)" onfocus="this.placeholder = ''"/>
         <br />
-        <input type="text" name="end" placeholder="End Time (HH:MM)" onfocus="this.placeholder = ''"/>
+        <input type="text" name="end" placeholder="Available Until... 24-hour(HH:MM)" onfocus="this.placeholder = ''"/>
         <br />   
         <input type="submit" value="Donate">
     </form>
-    <script src="../layout.js"></script>
+    <script src="layout.js"></script>
 </body>
 </html>
 
