@@ -16,6 +16,14 @@ include ("connection.php");
     <link rel="stylesheet" type="text/css" href="../style.css"/>
 </head>
 
+<?php
+
+echo"<!-- Navigation -->"
+ . "<form method=\"POST\" action=\"business.php\"></button>"
+ . "<input class=\"button\" type=\"submit\" value=\"Home\"></form>";
+
+?>
+
 <body>
     <form method="POST" action="donate.php">
         <input type="text" name="itemDescription" placeholder="Item Description" />
