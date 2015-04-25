@@ -85,8 +85,8 @@ if ($continue == true)
         $email = $_SESSION['email'];
     }   
 
-    $sql = "INSERT INTO Food_Details ( Item,  Quantity,  Time_Start,  Claimed_By,  Business_Email, Time_End, ItemID)"
-                        .  "VALUES   (  ?,        ?,         ?,           ?,              ?,          ?,      NULL )";
+    $sql = "INSERT INTO Food_Details ( Item,  Quantity,  Time_Start,  Claimed_By,  Business_Email, Time_End, ItemID, Date_Donated)"
+                        .  "VALUES   (  ?,        ?,         ?,           ?,              ?,          ?,      NULL,   CURDATE())";
     
     $stmt = mysqli_stmt_init($connection);
     $claimedBy= "Unclaimed";
