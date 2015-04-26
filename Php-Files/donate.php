@@ -25,7 +25,7 @@ echo"<!-- Navigation -->"
 ?>
 
 <body>
-    <form method="POST" action="donate.php">
+    <form method="POST" action="donate.php" id="donate">
         <input type="text" name="itemDescription" placeholder="Item Description" />
         <br />
         <input type="number" min="1" name="quantity" placeholder="Quantity" />
@@ -33,10 +33,11 @@ echo"<!-- Navigation -->"
         <input type="text" name="start" placeholder="Available from... 24-hour(HH:MM)" onfocus="this.placeholder = ''"/>
         <br />
         <input type="text" name="end" placeholder="Available Until... 24-hour(HH:MM)" onfocus="this.placeholder = ''"/>
-        <br />   
-        <input type="submit" value="Donate">
+        <br /> 
+        <button type="button" class="button" onclick="checkConnection('donate')">Donate</button>
     </form>
     <script src="layout.js"></script>
+    <script src="../CheckInternetConnection.js"></script> 
 </body>
 </html>
 

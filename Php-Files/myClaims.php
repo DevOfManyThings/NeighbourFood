@@ -61,9 +61,10 @@ if ($numRows > 0) {
         . "<td>" . $row["Item"]. " (" . $row["Quantity"]. ")</td>"
         . "<td>" . $row["Time_Start"] ." - " . $row["Time_End"] . "</td>"
         . "<td>" . "<!-- TODO distance from charity base to donator business base -->" . "</td>"
-        . "<td>" ?><form action="viewDonation.php" method="POST">
+        . "<td>" ?><form action="viewDonation.php" method="POST" id="viewDonation">
                    <input type="hidden" name="id" value="<?php echo $ItemID; ?>">
-                   <input type="submit" value="More Details"></form><?php
+                   <button type="button" class="button" onclick="checkConnection('viewDonation')">More Details</button>
+         </form><?php
         "</tr>";
     }
     echo "</tbody></table>";
@@ -73,5 +74,6 @@ if ($numRows > 0) {
 
 ?>
         <script src="../layout.js"></script>
+        <script src="../CheckInternetConnection.js"></script>  
 </body>
 </html>

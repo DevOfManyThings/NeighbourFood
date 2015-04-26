@@ -20,7 +20,7 @@ include ("connection.php");
         <h1 id="heading">
             Register
         </h1>
-    <form method="POST" action="register.php">
+    <form method="POST" action="register.php" id="register">
         <h3 id="warning">
             Please only register in your place of business
         </h3>
@@ -56,10 +56,12 @@ include ("connection.php");
                  <input type="radio" name="orgSelection" value="Charity">   
                 </div>
                 <br />
+                <button type="button" class="button" onclick="checkConnection('register')">Register</button>
                 <input class="button" type="submit" value="Register">
             </form>
             <script src="../layout.js"></script>
             <script>checkGpsOn();</script>
+            <script src="../CheckInternetConnection.js"></script> 
 </body>
 </html>
 
