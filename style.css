@@ -10,11 +10,13 @@
 *{
     margin: 0;
     padding: 0;
-    -webkit-user-select: none; 
-    -moz-user-select: none;     
-    -ms-user-select: none;      
-    -o-user-select: none;
-    user-select: none; 
+}
+*:not(input) {    
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 html, body{
     top:0;
@@ -32,25 +34,25 @@ hr{
 header{
     background-color:#000042;
 }
-#mainHeading{
+.mainHeading{
     color:white;
     background-color:#60997D;
     font-size: 2em;
   
 }
-#heading{
+.heading{
     color:#60997D;
     font-size: 1.5em;
 }
-#miniHeading{
+.miniHeading{
     color:#939393;
     font-size: 1em;
 }
-#warning{
+.warning{
     color:red;
     font-size: 0.85em;
 }
-#smallWarning{
+.smallWarning{
     color:red;
     font-size: 0.5em;
 }
@@ -63,7 +65,7 @@ form{
     text-align: center;
 }
 
-#radioMenu{ 
+.radioMenu{ 
     display: inline-block;
     position:relative;
     width: 30%;
@@ -101,10 +103,7 @@ input:invalid{
 input[type=submit]{
     width:auto;
 }
-input[type=radio]{
-    width:100%;
- 
-}
+
 table{
     width:100%;
     background-color: #e3e3e3;
@@ -143,6 +142,28 @@ table[id=business] th, table[id=business] td{
     html, body{
         font-size:1em;
     }
+}
+.radioButton{
+    width:100%;
+    color: #000042;
+    background-color: #e3e3e3;
+    border-style: solid;
+    border-color: #939393;
+    border-width: 1px;
+    padding-top:3%;
+    padding-bottom:3%;
+    opacity: 0.75;
+}
+.radioButtonChecked{
+    width:100%;
+    color: ghostwhite;
+    background-color: #60997D;
+    border-style: solid;
+    border-color: #939393;
+    border-width: 1px;
+    padding-top:3%;
+    padding-bottom:3%;
+    opacity: 1;
 }
 
 
