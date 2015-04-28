@@ -1,13 +1,32 @@
 <?php
 
 include ("connection.php");
+?>
+<!DOCTYPE html>
+<html manifest="../neighbourfood.appcache">
+<head >
+    <title>NeighbourFood</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="../style.css"/>
+    <script src="../navigate.js"></script>
+</head>
 
+<body class="closed">
+   
+    
+    <?php
 $email = $_POST['loginEmail'];
 $password = $_POST['loginPass'];
 
 $sql = "SELECT Password FROM Client_Details WHERE Email = '$email'";
 
 $result = mysqli_query($connection, $sql);
+?>
+  
+    <?php
 
 if (!$result) {
     die('Query Failed: ' . mysql_error());
@@ -47,12 +66,20 @@ if ($password == $pass) {
         session_start();
         $_SESSION['login'] = "";
         
-        header('Location: login.php');
+        echo "<script type=\"text/javascript\">alert(\"Login unsuccessful. Please check credentials then try again.\");</script> ";
+        echo "<script type=\"text/javascript\">navTo(\"login.php\");</script> ";
+    
         
     }
 } else { // If nothing is entered into the login or password textbox.
     session_start();
     $_SESSION['login'] = "";
-    header('Location: login.php');
+    echo "<script type=\"text/javascript\">alert(\"Login unsuccessful. Please check credentials then try again.\");</script> ";
+    echo "<script type=\"text/javascript\">navTo(\"login.php\");</script> ";
+    
+    
 }
 ?>
+    <script src="../layout.js"/>
+</body>
+</html>

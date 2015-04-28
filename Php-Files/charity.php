@@ -15,8 +15,7 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" type="text/css" href="../style.css"/>
-    <script src="navigate.js"></script>
-    <script src="claim.js"></script>
+    
 </head>
 <body>
 <?php
