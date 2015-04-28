@@ -20,6 +20,24 @@ if (isset($_SESSION['email'])) {
     $email = $_SESSION['email'];
 }
 
+//sql to get charities address for directions
+
+$sqlCharity = "SELECT a.Number,
+                      a.Street,
+                      a.Postcode
+               FROM Client_Details a
+               WHERE a.Email = '$email'";
+$resultCharity = mysqli_query($connection, $sqlCharity) or trigger_error("Query Failed: " . mysql_error());
+
+$rowCharity = $resultCharity->fetch_assoc();
+$charityNum = $rowCharity["Number"];
+$charityStr = $rowCharity["Street"];
+$charityPost = $rowCharity["Postcode"];
+
+$charityNumber = str_replace(' ', '+', $charityNum);
+$charityStreet = str_replace(' ', '+', $charityStr);
+$charityPostcode = str_replace(' ', '+', $charityPost);
+
 echo "<!-- Navigation -->"
  . "<form method=\"POST\" action=\"charity.php\"></button>"
  . "<input class=\"button\" type=\"submit\" value=\"Home\"></form>";
@@ -63,15 +81,27 @@ if ($numRows > 0) {
           . "<tr><td><p>Post Code:</p> </td><td><p>" . $row["Postcode"] . "</p></td></tr>"
           . "</table></section>"
                   . "<section>";
+          
           $status = $row["Claimed_By"];
           if($status == "Unclaimed"){
               echo "<form action=\"claim.php\" method=\"POST\">
                    <input type=\"hidden\" name=\"id\" value=\"$ItemID\">
-                   <input type=\"submit\" value=\"Claim This\"></form>";
+                   <input type=\"submit\" value=\"Claim This\"></form>;";
           }else{
+              $businessNumber = str_replace(' ', '+', $row["Number"]); 
+              $businessStreet = str_replace(' ', '+', $row["Street"]);
+              $businessPostcode = str_replace(' ', '+', $row["Postcode"]); 
+
                    echo "<form action=\"unclaim.php\" method=\"POST\">
                    <input type=\"hidden\" name=\"id\" value=\"$ItemID\">
                    <input type=\"submit\" value=\"Cancel Claim\"></form>";
+                   
+                   echo "<form action=\"maps.php\" method=\"POST\">
+                         <input type =\"hidden\" name=\"maps\" value=\"http://maps.apple.com/?daddr=".
+                           $businessNumber . "," . $businessStreet . "," . $businessPostcode . 
+                           "&saddr=" . $charityNumber . "," . $charityStreet . "," . $charityPostcode . "\">
+                         <input type =\"submit\" value=\"Directions\"></form>";
+                   
           }
            
                    echo "</section>";

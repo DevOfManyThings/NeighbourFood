@@ -2,6 +2,8 @@
 
 include ("connection.php");
 include ("checkCharityLogin.php");
+include ("calculateDistance.php");
+
 ?>
 <!DOCTYPE html>
 <head>
@@ -25,6 +27,17 @@ echo"<!-- Navigation -->"
  . "<input class=\"button\" type=\"submit\" value=\"Home\"></form>";
 
 
+$sqlCharity = "SELECT b.Longitude,
+                       b.Latitude
+               FROM Client_Details b
+               WHERE b.Email = '$email'";
+
+$resultChar = mysqli_query($connection, $sqlCharity) or trigger_error("Query Failed: " . mysql_error());
+
+$rowChar = $resultChar->fetch_assoc();
+$charLongitude = $rowChar["Longitude"];
+$charLatitude = $rowChar["Latitude"];
+
 $sql = "SELECT a.Item, 
                a.ItemID,
                a.Quantity, 
@@ -32,10 +45,10 @@ $sql = "SELECT a.Item,
                a.Business_Email, 
                DATE_FORMAT(a.Time_Start, '%H:%i') AS Time_Start,    
                DATE_FORMAT(a.Time_End, '%H:%i') AS Time_End, 
-               a.Claimed_By
+               a.Claimed_By, b.Latitude, b.Longitude
             FROM Food_Details a
             INNER JOIN Client_Details b ON a.Business_Email = b.Email
-            WHERE a.Claimed_By = '$email'";
+            WHERE a.Claimed_By = '$email' AND a.Business_Email = b.Email";
 
 $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . mysql_error());
 
@@ -60,7 +73,7 @@ if ($numRows > 0) {
         echo "<tr>"
         . "<td>" . $row["Item"]. " (" . $row["Quantity"]. ")</td>"
         . "<td>" . $row["Time_Start"] ." - " . $row["Time_End"] . "</td>"
-        . "<td>" . "<!-- TODO distance from charity base to donator business base -->" . "</td>"
+        . "<td>" . \calculateDistance($charLongitude, $charLatitude, $row["Longitude"], $row["Latitude"]) . "</td>"
         . "<td>" ?><form id="<?php echo $ItemID; ?>" action="viewDonation.php" method="POST"> 
         <input type="hidden" name="id"  value="<?php echo $ItemID; ?>"/>
         <button type="button" class="button" onclick="checkConnection(<?php echo $ItemID; ?>)">More Details</button>
