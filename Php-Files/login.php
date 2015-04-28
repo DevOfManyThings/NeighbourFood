@@ -18,8 +18,8 @@ session_start();
 
 <body>
     <header>
-        <img id="icon" src="../icon.png" alt="icon"/>
-        <h1 id="mainHeading"> NeighbourFood </h1>
+        <img class="icon" src="../icon.png" alt="icon"/>
+        <h1 class="mainHeading"> NeighbourFood </h1>
     </header>
     <?php if (empty($_SESSION['login'])) { ?>
         <form method="POST" action="authenticate.php" id="login">

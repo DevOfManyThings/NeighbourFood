@@ -17,49 +17,51 @@ include ("connection.php");
 
 <body>
     
-        <h1 id="heading">
+        <h1 class="heading">
             Register
         </h1>
     <form method="POST" action="register.php" id="register">
-        <h3 id="warning">
+        <h3 class="warning">
             Please only register in your place of business
         </h3>
-        <h4 id="smallWarning">
+        <h4 class="smallWarning">
             We use your location to calculate distances for charities
         </h4>
-        <h2 id="miniHeading">Organisation</h2>
+        <h2 class="miniHeading">Organisation</h2>
         
                 <input type="text" name="orgName" placeholder="Business/Charity Name">
                 <input type="hidden" name="longitude" value="" id="phoneLongitude" />
                 <input type="hidden" name="latitude" value="" id="phoneLatitude"/>
                 <br />
-                <h2 id="miniHeading">Organisation address</h2>
+                <h2 class="miniHeading">Organisation Address</h2>
                 <input type="number" min="1" name="number" placeholder="Number">
                 <br />
                 <input type="text" name="street" placeholder="Street">
                 <br />
                 <input type="text" name="postCode" placeholder="Post Code">
                 <br />
-                <h2 id="miniHeading">Login Details</h2>
+                <h2 class="miniHeading">Login Details</h2>
+                <br />
                 <input type="email" name="regEmail" placeholder="Email"> 
                 <br />
                 <input type="password" name="regPass" placeholder="Password">
                 <br />
                 <input type="password" name="re-enterPass" placeholder="Re-Enter Password">
                 <br />
-                <div id="radioMenu">
-                Business
-                <input type="radio" name="orgSelection" value="Business">
+                <h2 class="miniHeading">Select Account Type</h2>
+                <div class="radioMenu">
+                <div id="buttonBusiness" type="button" class="radioButton" onclick="checkRadio(1);">Donate as a Business</div>
+                <input id="radioBusiness" type="radio" name="orgSelection" value="Business" hidden>
                 </div>
-                <div id="radioMenu">
-                Charity
-                 <input type="radio" name="orgSelection" value="Charity">   
+                <div class="radioMenu">
+                 <div id="buttonCharity" type="button" class="radioButton" onclick="checkRadio(2);">Claim as a Charity</div>
+                 <input id="radioCharity" type="radio" name="orgSelection" value="Charity" hidden>   
                 </div>
                 <br />
-                <button type="button" class="button" onclick="checkConnection('register')">Register</button>
-                <input class="button" type="submit" value="Register">
+                <button class="button" type="button" onclick="checkConnection('register')">Register</button>
             </form>
             <script src="../layout.js"></script>
+            <script src="../radioButtons.js"></script>
             <script>checkGpsOn();</script>
             <script src="../CheckInternetConnection.js"></script> 
 </body>
