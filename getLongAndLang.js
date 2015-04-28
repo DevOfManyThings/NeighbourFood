@@ -8,9 +8,6 @@ function checkGpsOn() {
 }
 
 function setLocation(position){
-    alert("test2");
     document.getElementById("phoneLongitude").value = position.coords.longitude;
     document.getElementById("phoneLatitude").value = position.coords.latitude;
-    alert("Latitude: "+document.getElementById("phoneLatitude").value);
-    alert("Longitude: "+document.getElementById("phoneLongitude").value);
 }
