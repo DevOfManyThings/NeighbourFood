@@ -31,7 +31,7 @@ $result = mysqli_query($connection, $sql) or trigger_error("Query Failed: " . my
 $row = mysqli_fetch_row($result);
 
 
-echo "<h2 id=\"heading\">$row[0]</h2>"
+echo "<h2 class=\"heading\">$row[0]</h2>"
  . "<!-- Navigation -->"
  . "<form method=\"POST\" action=\"donate.php\">"
  . "<input class=\"button\" type=\"submit\" value=\"Donate\"></form>"

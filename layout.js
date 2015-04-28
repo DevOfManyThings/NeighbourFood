@@ -23,12 +23,12 @@ function resize() {
                 element.tagName !== "SCRIPT" &&
                 element.tagName !== "BODY") {
             
-            if (element.id === "icon") {
+            if (element.className === "icon") {
                 element.style.height = String(15 * L) + "px";
                 element.style.marginTop = String(3 * L) + "px";
                 element.style.marginBottom = String(2 * L) + "px";
             }
-            if (element.id === "mainHeading") {
+            if (element.className === "mainHeading") {
                 element.style.height = String(10 * L) + "px";
                 element.style.marginTop = String(L) + "px";
                 element.style.marginBottom = String(2 * L) + "px";
