@@ -69,7 +69,7 @@ include ("connection.php");
 
 <?php
 $continue = false;
-
+$firstTime = 0;
 if (isset($_POST['longitude'])){
     $longitude = $_POST['longitude'];
     
@@ -180,7 +180,8 @@ if ($continue == true) {
 
     if ($numRows > 0) {
         // Email already in use - take them back to the login page.         
-        header('Location: login.php');
+        echo "<script type=\"text/javascript\">alert(\"Registration unsuccessful. Email is already in use. Please try again.\");</script> ";
+    echo "<script type=\"text/javascript\">navTo(\"login.php\");</script> ";
     } else {
         $sql = "INSERT INTO Client_Details (OrgName, Number, Street, Postcode, Email, Password, Type, Longitude, Latitude)"
                                  . "VALUES (   ?,      ?,      ?,       ?,       ?,       ?,      ?,      ?,         ?)";
@@ -199,5 +200,8 @@ if ($continue == true) {
 
         header('Location: login.php');
     }
+} else {
+  
+    
 }
 ?>
