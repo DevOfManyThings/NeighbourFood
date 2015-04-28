@@ -16,19 +16,28 @@ include ("connection.php");
     <link rel="stylesheet" type="text/css" href="../style.css"/>
 </head>
 
+<?php
+
+echo"<!-- Navigation -->"
+ . "<form method=\"POST\" action=\"business.php\"></button>"
+ . "<input class=\"button\" type=\"submit\" value=\"Home\"></form>";
+
+?>
+
 <body>
-    <form method="POST" action="donate.php">
+    <form method="POST" action="donate.php" id="donate">
         <input type="text" name="itemDescription" placeholder="Item Description" />
         <br />
         <input type="number" min="1" name="quantity" placeholder="Quantity" />
         <br />
-        <input type="text" name="start" placeholder="Start Time (HH:MM)" onfocus="this.placeholder = ''"/>
+        <input type="text" name="start" placeholder="Available from... 24-hour(HH:MM)" onfocus="this.placeholder = ''"/>
         <br />
-        <input type="text" name="end" placeholder="End Time (HH:MM)" onfocus="this.placeholder = ''"/>
-        <br />   
-        <input type="submit" value="Donate">
+        <input type="text" name="end" placeholder="Available Until... 24-hour(HH:MM)" onfocus="this.placeholder = ''"/>
+        <br /> 
+        <button type="button" class="button" onclick="checkConnection('donate')">Donate</button>
     </form>
-    <script src="../layout.js"></script>
+    <script src="layout.js"></script>
+    <script src="../CheckInternetConnection.js"></script> 
 </body>
 </html>
 
@@ -85,8 +94,8 @@ if ($continue == true)
         $email = $_SESSION['email'];
     }   
 
-    $sql = "INSERT INTO Food_Details ( Item,  Quantity,  Time_Start,  Claimed_By,  Business_Email, Time_End, ItemID)"
-                        .  "VALUES   (  ?,        ?,         ?,           ?,              ?,          ?,      NULL )";
+    $sql = "INSERT INTO Food_Details ( Item,  Quantity,  Time_Start,  Claimed_By,  Business_Email, Time_End, ItemID, Date_Donated)"
+                        .  "VALUES   (  ?,        ?,         ?,           ?,              ?,          ?,      NULL,   CURDATE())";
     
     $stmt = mysqli_stmt_init($connection);
     $claimedBy= "Unclaimed";

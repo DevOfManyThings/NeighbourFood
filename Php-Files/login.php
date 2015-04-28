@@ -3,6 +3,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
+<html manifest="../neighbourfood.appcache">
 <head>
     <title>NeighbourFood</title>
     <meta charset="UTF-8">
@@ -21,12 +22,12 @@ session_start();
         <h1 id="mainHeading"> NeighbourFood </h1>
     </header>
     <?php if (empty($_SESSION['login'])) { ?>
-        <form method="POST" action="authenticate.php">
+        <form method="POST" action="authenticate.php" id="login">
             <input type="email" name="loginEmail" placeholder="Email" onfocus="this.placeholder = '';">
             <br />
             <input type="password" name="loginPass" placeholder="Password" onfocus="this.placeholder = '';">
             <br />
-            <input class="button" type="submit" value="Login">
+            <button type="button" class="button" onclick="checkConnection('login')">Login</button>
         </form>
         <p> Don't have an account?</p>
         <form action="register.php">
@@ -39,6 +40,7 @@ session_start();
             <input class="button" type = "submit" value = "Logout">
         </form>
     <?php } ?>
-    <script src="../layout.js"></script>  
+    <script src="../layout.js"></script> 
+    <script src="../CheckInternetConnection.js"></script>  
 </body>
 </html>

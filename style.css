@@ -46,6 +46,14 @@ header{
     color:#939393;
     font-size: 1em;
 }
+#warning{
+    color:red;
+    font-size: 0.85em;
+}
+#smallWarning{
+    color:red;
+    font-size: 0.5em;
+}
 p{
     color:#000042;
     font-size: 1em;

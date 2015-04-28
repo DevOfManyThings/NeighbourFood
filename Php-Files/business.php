@@ -77,9 +77,9 @@ if ($numRows > 0) {
         if ($Claimed == "Unclaimed") {
             echo
             "<td>"
-            ?><form action="removeDonation.php" method="POST">
+            ?><form action="removeDonation.php" method="POST" id="removeDonation">
                 <input type="hidden" name="id" value="<?php echo $ItemID; ?>">
-                <input type="submit" value="Delete"></form><?php
+                 <button type="button" class="button" onclick="checkConnection('removeDonation')">Delete</button></form><?php
             "</td></tr>";
         }
     }
@@ -89,5 +89,6 @@ if ($numRows > 0) {
 }
 ?>
         <script src="../layout.js"></script>
+         <script src="../CheckInternetConnection.js"></script>  
 </body>
 </html>
