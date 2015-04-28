@@ -69,7 +69,7 @@ include ("connection.php");
 
 <?php
 $continue = false;
-$firstTime = 0;
+
 if (isset($_POST['longitude'])){
     $longitude = $_POST['longitude'];
     
