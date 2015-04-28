@@ -18,7 +18,8 @@ include ("connection.php");
 
 <?php
 
-echo"<!-- Navigation -->"
+echo"<h2 class=\"mainHeading\">Donate</h2>"
+. "<!-- Navigation -->"
  . "<form method=\"POST\" action=\"business.php\"></button>"
  . "<input class=\"button\" type=\"submit\" value=\"Home\"></form>";
 
@@ -30,13 +31,13 @@ echo"<!-- Navigation -->"
         <br />
         <input type="number" min="1" name="quantity" placeholder="Quantity" />
         <br />
-        <input type="text" name="start" placeholder="Available from... 24-hour(HH:MM)" onfocus="this.placeholder = ''"/>
+        <input type="time" name="start" placeholder="Available from... 24-hour(HH:MM)" onfocus="this.placeholder = ''"/>
         <br />
-        <input type="text" name="end" placeholder="Available Until... 24-hour(HH:MM)" onfocus="this.placeholder = ''"/>
+        <input type="time" name="end" placeholder="Available Until... 24-hour(HH:MM)" onfocus="this.placeholder = ''"/>
         <br /> 
         <button type="button" class="button" onclick="checkConnection('donate')">Donate</button>
     </form>
-    <script src="layout.js"></script>
+    <script src="../layout.js"></script>
     <script src="../CheckInternetConnection.js"></script> 
 </body>
 </html>
