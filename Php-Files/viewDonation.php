@@ -48,14 +48,14 @@ $numRows = mysqli_num_rows($result);
 if ($numRows > 0) {
     //Print result
       while ($row = $result->fetch_assoc()) {
-          echo "<h2 id=\"mainHeading\">Donation</h2>"
-          . "<section><h2 id=\"heading\">Item Information</h2>"
+          echo "<h2 class=\"mainHeading\">Donation</h2>"
+          . "<section><h2 class=\"heading\">Item Information</h2>"
           . "<table class=\"frame\">"
           . "<tr><td><p>Item Description:</p> </td><td><p>" . $row["Item"] . "</p></td></tr>"
           . "<tr><td><p>Quantity:</p> </td><td><p>" . $row["Quantity"] . "</p></td></tr>"
           . "<tr><td><p>Time Available:</p> </td><td><p>" . $row["Time_Start"] . " - " . $row["Time_End"] . "</p></td></tr>"
           . "</table></section>"
-          . "<section><h2 id=\"heading\">Donator Information</h2>"
+          . "<section><h2 class=\"heading\">Donator Information</h2>"
           . "<table class=\"frame\">"
           . "<tr><td><p>Name:</p> </td><td><p>" . $row["OrgName"] . "</p></td></tr>"
           . "<tr><td><p>Email:</p> </td><td><p>" . $row["Email"] . "</p></td></tr>"

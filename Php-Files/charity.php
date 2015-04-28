@@ -39,7 +39,7 @@ $latitude = $rowDist["Latitude"];
 
 $row = mysqli_fetch_row($result);
 
-echo"<h2 id=\"heading\">$row[0]</h2>"
+echo"<h2 class=\"heading\">$row[0]</h2>"
  . "<!-- Navigation -->"
  . "<form method=\"POST\" action=\"myClaims.php\"></button>"
  . "<input class=\"button\" type=\"submit\" value=\"My Claims\"></form>"
@@ -85,11 +85,10 @@ if ($numRows > 0) {
         . "<td>" . $row["Item"]. " (" . $row["Quantity"]. ")</td>"
         . "<td>" . $row["Time_Start"] ." - " . $row["Time_End"] . "</td>"
         . "<td>" . \calculateDistance($longitude, $latitude, $row["Longitude"], $row["Latitude"]) . "</td>"
-        . "<td>" ?><form action="viewDonation.php" method="POST" id="viewDonation">
-                   <input type="hidden" name="id" value="<?php echo $ItemID; ?>">
-                    <button type="button" class="button" onclick="checkConnection('viewDonation')">More Details</button>
-                  </form><?php
-        "</tr>";
+        . "<td>"?><form id="<?php echo $ItemID; ?>" action="viewDonation.php" method="POST"> 
+        <input type="hidden" name="id"  value="<?php echo $ItemID; ?>"/>
+        <button type="button" class="button" onclick="checkConnection(<?php echo $ItemID; ?>)">More Details</button>
+        </form></tr><?php
     }
     echo "</tbody></table>";
      
