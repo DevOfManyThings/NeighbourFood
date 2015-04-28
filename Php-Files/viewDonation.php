@@ -86,7 +86,7 @@ if ($numRows > 0) {
           if($status == "Unclaimed"){
               echo "<form action=\"claim.php\" method=\"POST\">
                    <input type=\"hidden\" name=\"id\" value=\"$ItemID\">
-                   <input type=\"submit\" value=\"Claim This\"></form>;";
+                   <input type=\"submit\" value=\"Claim This\"></form>";
           }else{
               $businessNumber = str_replace(' ', '+', $row["Number"]); 
               $businessStreet = str_replace(' ', '+', $row["Street"]);
