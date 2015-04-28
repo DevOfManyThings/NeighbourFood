@@ -40,7 +40,7 @@ $numRows = mysqli_num_rows($result);
 if ($numRows > 0) {
     //Print result
       while ($row = $result->fetch_assoc()) {
-          echo "<h2 id=\"mainHeading\">Donation Information</h2>"
+          echo "<h2 id=\"mainHeading\">Donation</h2>"
           . "<section><h2 id=\"heading\">Item Information</h2>"
           . "<table class=\"frame\">"
           . "<tr><td><p>Item Description:</p> </td><td><p>" . $row["Item"] . "</p></td></tr>"

@@ -117,18 +117,14 @@ table[id=donations] th, table[id=donations] td{
     padding-left:1%;
     padding-right:1%;
     background-color: ghostwhite;
-    border-style: solid;
-    border-color: grey;
-    border-width: 1px;
+
 }
 table[id=business] th, table[id=business] td{
     width:25%;
     padding-left:1%;
     padding-right:1%;
     background-color: ghostwhite;
-    border-style: solid;
-    border-color: grey;
-    border-width: 1px;
+ 
 }
 @media screen and (max-width: 340px) {
     html, body{
