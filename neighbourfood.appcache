@@ -2,16 +2,16 @@ CACHE MANIFEST
 # 2015-20-04 v3.0
 CACHE:
 CheckInternetConnection.js
-calcDistance.js
 claimedDetails.html
-donate.html
 getLongAndLang.js
 icon.png
 layout.js
 location.html
 lostInternetConnection.html
 navigate.js
+radioButtons.js
 style.css
+./Php-Files/calculateDistance.php
 
 NETWORK:
 *
