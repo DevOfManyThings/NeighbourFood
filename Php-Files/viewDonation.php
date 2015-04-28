@@ -38,10 +38,6 @@ $charityNumber = str_replace(' ', '+', $charityNum);
 $charityStreet = str_replace(' ', '+', $charityStr);
 $charityPostcode = str_replace(' ', '+', $charityPost);
 
-echo $charityNumber;
-echo $charityStreet;
-echo $charityPostcode;
-
 echo "<!-- Navigation -->"
  . "<form method=\"POST\" action=\"charity.php\"></button>"
  . "<input class=\"button\" type=\"submit\" value=\"Home\"></form>";
@@ -98,10 +94,14 @@ if ($numRows > 0) {
 
                    echo "<form action=\"unclaim.php\" method=\"POST\">
                    <input type=\"hidden\" name=\"id\" value=\"$ItemID\">
-                   <input type=\"submit\" value=\"Cancel Claim\"></form>"
-                           . "<a href=http://maps.apple.com/?daddr=".
-                           $businessNumber . "," . $businessStreet . "," . $businessPostcode.
-                           "&saddr=" . $charityNumber . "," . $charityStreet . "," . $charityPostcode . ">Directions</a>";
+                   <input type=\"submit\" value=\"Cancel Claim\"></form>";
+                   
+                   echo "<form action=\"maps.php\" method=\"POST\">
+                         <input type =\"hidden\" name=\"maps\" value=\"http://maps.apple.com/?daddr=".
+                           $businessNumber . "," . $businessStreet . "," . $businessPostcode . 
+                           "&saddr=" . $charityNumber . "," . $charityStreet . "," . $charityPostcode . "\">
+                         <input type =\"submit\" value=\"Directions\"></form>";
+                   
           }
            
                    echo "</section>";
